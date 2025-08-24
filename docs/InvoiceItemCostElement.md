@@ -1,0 +1,147 @@
+# InvoiceItemCostElement
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**links** | [**List[NsLink]**](NsLink.md) |  | [optional] [readonly] 
+**custcol_prj_order_line** | **str** |  | [optional] 
+**rate_schedule** | **str** |  | [optional] 
+**memo** | **str** |  | [optional] 
+**custcol_nxc_end_check** | **bool** |  | [optional] 
+**custcol_vl_item_display_name** | **str** |  | [optional] 
+**custcol_msl_sitemgtcost** | **float** |  | [optional] 
+**custcol_5892_eutriangulation** | **bool** |  | [optional] 
+**options** | **str** |  | [optional] 
+**custcol_4601_witaxbaseamount** | **float** |  | [optional] 
+**custcol_vl_description_print** | **str** |  | [optional] 
+**custcol_nx_time_start** | **str** |  | [optional] 
+**custcol_bb1_margin** | **float** |  | [optional] 
+**custcol_country_of_origin_name** | **str** |  | [optional] 
+**custcol_4601_witaxbamt_exp** | **float** |  | [optional] 
+**custcolcostcentre** | **str** |  | [optional] 
+**custcol_zc_3wm_matching_id** | **str** |  | [optional] 
+**custcol_vl_unique_asset_code** | **str** |  | [optional] 
+**custcol_nx_time_end** | **str** |  | [optional] 
+**custcol_4601_witaxamount** | **float** |  | [optional] 
+**custcol_msl_materialcost** | **float** |  | [optional] 
+**custcol_cs_estimate_quote_ref** | **str** |  | [optional] 
+**custcol_nx_time_billed** | **bool** |  | [optional] 
+**custcol_vl_linked_transaction_line** | **str** |  | [optional] 
+**custcol_adjustment_field** | **str** |  | [optional] 
+**custcol_country_of_origin_code** | **str** |  | [optional] 
+**custcol_re_work_re_order_check** | **bool** |  | [optional] 
+**custcol_day_rate** | **bool** |  | [optional] 
+**custcol_counterparty_vat** | **str** |  | [optional] 
+**custcol_4601_witaxline** | **str** |  | [optional] 
+**custcol_other_rate** | **bool** |  | [optional] 
+**custcol_bb1_temp_itemdisplay** | **str** |  | [optional] 
+**custcol_reference** | **str** |  | [optional] 
+**url** | **str** |  | [optional] 
+**custcol_zc_item_type** | [**InvoiceExpCostElementCustcolZcItemType**](InvoiceExpCostElementCustcolZcItemType.md) |  | [optional] 
+**custcol_msl_prelicost** | **float** |  | [optional] 
+**custcol_quote_reference** | **str** |  | [optional] 
+**item_cost_count** | **str** |  | [optional] 
+**custcol_nx_idempotency_key** | **str** |  | [optional] 
+**custcol_bb1_fp_calculation_completed** | **bool** |  | [optional] 
+**custcol_nx_time_costed** | **bool** |  | [optional] 
+**custcol_4601_witaxrate** | **float** |  | [optional] 
+**custcol_cs_estimate_add_notes** | **str** |  | [optional] 
+**custcol_internal_notes** | **str** |  | [optional] 
+**custcol_statistical_value** | **float** |  | [optional] 
+**custcol3** | **str** |  | [optional] 
+**custcol4** | **str** |  | [optional] 
+**custcol_4601_witaxamt_exp** | **float** |  | [optional] 
+**unit** | **str** |  | [optional] 
+**unit_disp** | **str** |  | [optional] 
+**custcol_ff_sc_po_line** | **int** |  | [optional] 
+**custcol_ph4014_src_tranintid** | **str** |  | [optional] 
+**custcol_description_location** | **str** |  | [optional] 
+**custcol_mark_as_optional** | **bool** |  | [optional] 
+**custcol_4601_witaxrate_exp** | **float** |  | [optional] 
+**custcol_msl_labourcost** | **float** |  | [optional] 
+**line** | **int** |  | [optional] 
+**billed_date** | **date** |  | [optional] 
+**custcol_statistical_value_base_curr** | **float** |  | [optional] 
+**custcol_nx_foreignamount** | **float** |  | [optional] 
+**custcol_nx_time_cost** | **float** |  | [optional] 
+**amount** | **float** |  | [optional] 
+**cost** | **float** |  | [optional] 
+**apply** | **bool** |  | [optional] 
+**custcol_zc_vendor_txn_idx** | **int** |  | [optional] 
+**custcol_zc_3wm_matching_summary** | **str** |  | [optional] 
+**custcol_4601_witaxapplies** | **bool** |  | [optional] 
+**custcol_nxc_end_time** | **str** |  | [optional] 
+**custcol_nxc_start_time** | **str** |  | [optional] 
+**custcol_ff_sc_matching_status_inline** | **str** |  | [optional] 
+**custcol_bb1_ventro_fp_orig_rate** | **float** |  | [optional] 
+**custcol_bb1_targetmarginline** | **float** |  | [optional] 
+**custcol_nxc_start_check** | **bool** |  | [optional] 
+**custcol_4601_witaxline_exp** | **str** |  | [optional] 
+**ref_name** | **str** |  | [optional] 
+**custcol_sales_consultant_line** | [**NsResource**](NsResource.md) |  | [optional] 
+**doc** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_nx_projecttask** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_emirate** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcolrequestorline** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_nx_consumable** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_ff_sc_ammr_rule_applied** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_subcontractor** | [**Vendor**](Vendor.md) |  | [optional] 
+**custcol_vl_tax_code_print** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_ph4014_src_custid** | [**Customer**](Customer.md) |  | [optional] 
+**custcol_nx_asset** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_ff_sc_vatex_reason** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_4601_witaxcode_exp** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_nxc_case** | [**NsResource**](NsResource.md) |  | [optional] 
+**department** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_ff_sc_matching_status** | [**NsResource**](NsResource.md) |  | [optional] 
+**cseg_paactivitycode** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_statistical_procedure_sale** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_bb1_labour_type** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_nondeductible_account** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_nx_case** | [**NsResource**](NsResource.md) |  | [optional] 
+**inventory_detail** | [**InvoiceItemCostInventoryDetail**](InvoiceItemCostInventoryDetail.md) |  | [optional] 
+**custcol_nature_of_transaction_codes** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_bb1_suiteprojects_project_lin** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_ph4014_src_empid** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_ph4014_src_vendorid** | [**Vendor**](Vendor.md) |  | [optional] 
+**custcol_vl_linked_transaction** | [**NsResource**](NsResource.md) |  | [optional] 
+**cseg_accreditations** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_4601_itemdefaultwitaxcode** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_ff_sc_po_id** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcolprojectframeworkprovider** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcolpmschedulerline** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_4601_witaxcode** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_statistical_procedure_purc** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_pocase** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcolprojectqsline** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_ph4014_src_jrnltrantypeid** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_adjustment_tax_code** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_expense_code_of_supply** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_nx_task** | [**NsResource**](NsResource.md) |  | [optional] 
+**item** | [**NsResource**](NsResource.md) |  | [optional] 
+**location** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_bb1_vehicle_expense** | [**NsResource**](NsResource.md) |  | [optional] 
+**var_class** | [**NsResource**](NsResource.md) |  | [optional] 
+
+## Example
+
+```python
+from pynetsuite.models.invoice_item_cost_element import InvoiceItemCostElement
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of InvoiceItemCostElement from a JSON string
+invoice_item_cost_element_instance = InvoiceItemCostElement.from_json(json)
+# print the JSON string representation of the object
+print(InvoiceItemCostElement.to_json())
+
+# convert the object into a dict
+invoice_item_cost_element_dict = invoice_item_cost_element_instance.to_dict()
+# create an instance of InvoiceItemCostElement from a dict
+invoice_item_cost_element_from_dict = InvoiceItemCostElement.from_dict(invoice_item_cost_element_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
