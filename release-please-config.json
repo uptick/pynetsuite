@@ -1,0 +1,13 @@
+{
+    "packages": {
+      "pynetsuite": {
+        "package-name": "pynetsuite",
+        "release-type": "python",
+        "changelog-path": "CHANGELOG.md",
+        "exclude-paths": [
+            "tests/",
+	        ".github/"
+        ]
+      }
+    }
+}
