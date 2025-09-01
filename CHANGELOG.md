@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/uptick/pynetsuite/compare/v1.0.0...v1.1.0) (2025-09-01)
+
+
+### Features
+
+* add models for currency, terms, accounts & tax types ([40d0331](https://github.com/uptick/pynetsuite/commit/40d033147c073e024e0ea51632e57a1a413bae9d))
+
 ## [1.0.0](https://github.com/uptick/pynetsuite/compare/v1.0.0...v1.0.0) (2025-08-29)
 
 
