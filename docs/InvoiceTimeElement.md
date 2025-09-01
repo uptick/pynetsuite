@@ -87,7 +87,7 @@ Name | Type | Description | Notes
 **custcol_ff_sc_ammr_rule_applied** | [**NsResource**](NsResource.md) |  | [optional] 
 **custcol_4601_itemdefaultwitaxcode** | [**NsResource**](NsResource.md) |  | [optional] 
 **custcol_bb1_labour_type** | [**NsResource**](NsResource.md) |  | [optional] 
-**custcol_nondeductible_account** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_nondeductible_account** | [**Account**](Account.md) |  | [optional] 
 **cseg_accreditations** | [**NsResource**](NsResource.md) |  | [optional] 
 **cseg_paactivitycode** | [**NsResource**](NsResource.md) |  | [optional] 
 **custcol_vl_linked_transaction** | [**NsResource**](NsResource.md) |  | [optional] 

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **balance** | **float** |  | [optional] 
 **unbilled_orders** | **float** |  | [optional] 
 **ref_name** | **str** |  | [optional] 
-**currency** | [**NsResource**](NsResource.md) |  | [optional] 
+**currency** | [**Currency**](Currency.md) |  | [optional] 
 
 ## Example
 

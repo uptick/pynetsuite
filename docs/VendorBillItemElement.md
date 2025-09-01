@@ -143,7 +143,7 @@ Name | Type | Description | Notes
 **custcol_nxc_case** | [**NsResource**](NsResource.md) |  | [optional] 
 **custcol_ff_sc_vatex_reason** | [**NsResource**](NsResource.md) |  | [optional] 
 **customer** | [**VendorBillItemElementCustomer**](VendorBillItemElementCustomer.md) |  | [optional] 
-**custcol_nondeductible_account** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_nondeductible_account** | [**Account**](Account.md) |  | [optional] 
 **projecttask** | [**NsResource**](NsResource.md) |  | [optional] 
 **custcol_statistical_procedure_sale** | [**NsResource**](NsResource.md) |  | [optional] 
 **custcol_nx_asset** | [**NsResource**](NsResource.md) |  | [optional] 

@@ -99,7 +99,7 @@ Name | Type | Description | Notes
 **cseg_paactivitycode** | [**NsResource**](NsResource.md) |  | [optional] 
 **custcol_statistical_procedure_sale** | [**NsResource**](NsResource.md) |  | [optional] 
 **custcol_bb1_labour_type** | [**NsResource**](NsResource.md) |  | [optional] 
-**custcol_nondeductible_account** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_nondeductible_account** | [**Account**](Account.md) |  | [optional] 
 **custcol_nx_case** | [**NsResource**](NsResource.md) |  | [optional] 
 **inventory_detail** | [**InvoiceItemCostInventoryDetail**](InvoiceItemCostInventoryDetail.md) |  | [optional] 
 **custcol_nature_of_transaction_codes** | [**NsResource**](NsResource.md) |  | [optional] 

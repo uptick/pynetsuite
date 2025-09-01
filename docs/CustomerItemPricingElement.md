@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **links** | [**List[NsLink]**](NsLink.md) |  | [optional] [readonly] 
 **price** | **float** |  | [optional] 
 **ref_name** | **str** |  | [optional] 
-**currency** | [**NsResource**](NsResource.md) |  | [optional] 
+**currency** | [**Currency**](Currency.md) |  | [optional] 
 **level** | [**NsResource**](NsResource.md) |  | [optional] 
 **item** | [**NsResource**](NsResource.md) |  | [optional] 
 

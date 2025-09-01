@@ -1,6 +1,6 @@
 # pynetsuite.InvoiceApi
 
-All URIs are relative to *https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1*
+All URIs are relative to *https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -30,10 +30,10 @@ from pynetsuite.models.invoice_collection import InvoiceCollection
 from pynetsuite.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1
+# Defining the host is optional and defaults to https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pynetsuite.Configuration(
-    host = "https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1"
+    host = "https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -115,10 +115,10 @@ import pynetsuite
 from pynetsuite.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1
+# Defining the host is optional and defaults to https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pynetsuite.Configuration(
-    host = "https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1"
+    host = "https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -195,10 +195,10 @@ from pynetsuite.models.invoice import Invoice
 from pynetsuite.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1
+# Defining the host is optional and defaults to https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pynetsuite.Configuration(
-    host = "https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1"
+    host = "https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -283,10 +283,10 @@ from pynetsuite.models.invoice import Invoice
 from pynetsuite.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1
+# Defining the host is optional and defaults to https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pynetsuite.Configuration(
-    host = "https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1"
+    host = "https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -373,10 +373,10 @@ from pynetsuite.models.invoice import Invoice
 from pynetsuite.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1
+# Defining the host is optional and defaults to https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pynetsuite.Configuration(
-    host = "https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1"
+    host = "https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -463,10 +463,10 @@ from pynetsuite.models.credit_memo import CreditMemo
 from pynetsuite.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1
+# Defining the host is optional and defaults to https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pynetsuite.Configuration(
-    host = "https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1"
+    host = "https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -553,10 +553,10 @@ from pynetsuite.models.ns_resource import NsResource
 from pynetsuite.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1
+# Defining the host is optional and defaults to https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pynetsuite.Configuration(
-    host = "https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1"
+    host = "https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -643,10 +643,10 @@ from pynetsuite.models.ns_resource import NsResource
 from pynetsuite.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1
+# Defining the host is optional and defaults to https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pynetsuite.Configuration(
-    host = "https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1"
+    host = "https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -733,10 +733,10 @@ from pynetsuite.models.invoice import Invoice
 from pynetsuite.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1
+# Defining the host is optional and defaults to https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pynetsuite.Configuration(
-    host = "https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1"
+    host = "https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1"
 )
 
 # The client must configure the authentication and authorization parameters

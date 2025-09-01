@@ -98,7 +98,7 @@ Name | Type | Description | Notes
 **custcol_statistical_procedure_sale** | [**NsResource**](NsResource.md) |  | [optional] 
 **custcol_ff_sc_vatex_reason** | [**NsResource**](NsResource.md) |  | [optional] 
 **custcol_subcontractor** | [**Vendor**](Vendor.md) |  | [optional] 
-**custcol_nondeductible_account** | [**NsResource**](NsResource.md) |  | [optional] 
+**custcol_nondeductible_account** | [**Account**](Account.md) |  | [optional] 
 **custcol_bb1_labour_type** | [**NsResource**](NsResource.md) |  | [optional] 
 **custcol_nx_projecttask** | [**NsResource**](NsResource.md) |  | [optional] 
 **custcol_ff_sc_ammr_rule_applied** | [**NsResource**](NsResource.md) |  | [optional] 

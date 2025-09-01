@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **links** | [**List[NsLink]**](NsLink.md) |  | [optional] [readonly] 
 **rate** | **float** |  | [optional] 
 **ref_name** | **str** |  | [optional] 
-**entity_currency** | [**NsResource**](NsResource.md) |  | [optional] 
+**entity_currency** | [**Currency**](Currency.md) |  | [optional] 
 
 ## Example
 

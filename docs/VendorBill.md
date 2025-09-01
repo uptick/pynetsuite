@@ -243,7 +243,7 @@ Name | Type | Description | Notes
 **custbody_ff_sc_bank_details** | [**NsResource**](NsResource.md) |  | [optional] 
 **custbody_bb1_vl_current_approval** | [**NsResource**](NsResource.md) |  | [optional] 
 **custbody_4601_doc_ref_id** | [**NsResource**](NsResource.md) |  | [optional] 
-**custbody_zc_ap_bank_acct_gl_acct** | [**NsResource**](NsResource.md) |  | [optional] 
+**custbody_zc_ap_bank_acct_gl_acct** | [**Account**](Account.md) |  | [optional] 
 **expense** | [**VendorBillExpenseCollection**](VendorBillExpenseCollection.md) |  | [optional] 
 **location** | [**NsResource**](NsResource.md) |  | [optional] 
 **custbody_projectbuyer** | [**NsResource**](NsResource.md) |  | [optional] 
@@ -261,8 +261,8 @@ Name | Type | Description | Notes
 **custbody_bb1_credit_reason** | [**NsResource**](NsResource.md) |  | [optional] 
 **custbody_bb1_market** | [**NsResource**](NsResource.md) |  | [optional] 
 **custbody_alternate_site** | [**NsResource**](NsResource.md) |  | [optional] 
-**currency** | [**NsResource**](NsResource.md) |  | [optional] 
-**terms** | [**NsResource**](NsResource.md) |  | [optional] 
+**currency** | [**Currency**](Currency.md) |  | [optional] 
+**terms** | [**Term**](Term.md) |  | [optional] 
 **custbody_vl_linked_transaction** | [**NsResource**](NsResource.md) |  | [optional] 
 **bill_address_list** | [**NsResource**](NsResource.md) |  | [optional] 
 **custbody_cs_linked_project** | [**NsResource**](NsResource.md) |  | [optional] 
@@ -275,7 +275,7 @@ Name | Type | Description | Notes
 **custbody_eff_nsp2p_xml2nstrans** | [**NsResource**](NsResource.md) |  | [optional] 
 **department** | [**NsResource**](NsResource.md) |  | [optional] 
 **custbody_4601_entitydefaultwitaxcode** | [**NsResource**](NsResource.md) |  | [optional] 
-**account** | [**NsResource**](NsResource.md) |  | [optional] 
+**account** | [**Account**](Account.md) |  | [optional] 
 **custbody_bb1_vl_project** | [**NsResource**](NsResource.md) |  | [optional] 
 
 ## Example

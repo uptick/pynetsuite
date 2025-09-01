@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "NetSuite REST Record API",
-    "description": "NetSuite REST Record API",
+    "description": "NetSuite REST Record API generated 2025-09-01 at 22:32:31 UTC.",
     "termsOfService": "http://www.netsuite.com/portal/resource/terms-of-service.shtml",
     "contact": {
       "name": "Oracle NetSuite",
@@ -16,7 +16,7 @@
   },
   "servers": [
     {
-      "url": "https://<account_id>.suitetalk.api.netsuite.com/services/rest/record/v1"
+      "url": "https://account_id.suitetalk.api.netsuite.com/services/rest/record/v1"
     }
   ],
   "security": [
@@ -845,6 +845,211 @@
         }
       }
     },
+    "/currency": {
+      "get": {
+        "tags": [
+          "Currency"
+        ],
+        "summary": "Get list of records.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The search query that is used to filter results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The limit used to specify the number of results on a single page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1000
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The offset used for selecting a specific page of results.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=collection": {
+                "schema": {
+                  "$ref": "#/components/schemas/currencyCollection"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Currency"
+        ],
+        "summary": "Insert record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "replace",
+            "in": "query",
+            "description": "The names of sublists on this record. All sublist lines will be replaced with lines specified in the request. The names are delimited by comma.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple sublists": {
+                "value": "sublist1,subrecord.sublist2"
+              },
+              "sublist on subrecord": {
+                "value": "subrecord.sublist"
+              },
+              "single sublist": {
+                "value": "sublist"
+              }
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyNameValidation",
+            "in": "header",
+            "description": "Sets the strictness of property name validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Warning"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyValueValidation",
+            "in": "header",
+            "description": "Sets the strictness of property value validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Error"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/vnd.oracle.resource+json; type=singular": {
+              "schema": {
+                "$ref": "#/components/schemas/currency"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Inserted record.",
+            "headers": {
+              "X-NetSuite-PropertyValidation": {
+                "description": "The description of a property validation failure.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/customer": {
       "get": {
         "tags": [
@@ -1012,6 +1217,621 @@
             "application/vnd.oracle.resource+json; type=singular": {
               "schema": {
                 "$ref": "#/components/schemas/customer"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Inserted record.",
+            "headers": {
+              "X-NetSuite-PropertyValidation": {
+                "description": "The description of a property validation failure.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/term": {
+      "get": {
+        "tags": [
+          "Term"
+        ],
+        "summary": "Get list of records.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The search query that is used to filter results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The limit used to specify the number of results on a single page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1000
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The offset used for selecting a specific page of results.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=collection": {
+                "schema": {
+                  "$ref": "#/components/schemas/termCollection"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Term"
+        ],
+        "summary": "Insert record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "replace",
+            "in": "query",
+            "description": "The names of sublists on this record. All sublist lines will be replaced with lines specified in the request. The names are delimited by comma.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple sublists": {
+                "value": "sublist1,subrecord.sublist2"
+              },
+              "sublist on subrecord": {
+                "value": "subrecord.sublist"
+              },
+              "single sublist": {
+                "value": "sublist"
+              }
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyNameValidation",
+            "in": "header",
+            "description": "Sets the strictness of property name validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Warning"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyValueValidation",
+            "in": "header",
+            "description": "Sets the strictness of property value validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Error"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/vnd.oracle.resource+json; type=singular": {
+              "schema": {
+                "$ref": "#/components/schemas/term"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Inserted record.",
+            "headers": {
+              "X-NetSuite-PropertyValidation": {
+                "description": "The description of a property validation failure.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/taxType": {
+      "get": {
+        "tags": [
+          "TaxType"
+        ],
+        "summary": "Get list of records.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The search query that is used to filter results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The limit used to specify the number of results on a single page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1000
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The offset used for selecting a specific page of results.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=collection": {
+                "schema": {
+                  "$ref": "#/components/schemas/taxTypeCollection"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "TaxType"
+        ],
+        "summary": "Insert record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "replace",
+            "in": "query",
+            "description": "The names of sublists on this record. All sublist lines will be replaced with lines specified in the request. The names are delimited by comma.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple sublists": {
+                "value": "sublist1,subrecord.sublist2"
+              },
+              "sublist on subrecord": {
+                "value": "subrecord.sublist"
+              },
+              "single sublist": {
+                "value": "sublist"
+              }
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyNameValidation",
+            "in": "header",
+            "description": "Sets the strictness of property name validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Warning"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyValueValidation",
+            "in": "header",
+            "description": "Sets the strictness of property value validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Error"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/vnd.oracle.resource+json; type=singular": {
+              "schema": {
+                "$ref": "#/components/schemas/taxType"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Inserted record.",
+            "headers": {
+              "X-NetSuite-PropertyValidation": {
+                "description": "The description of a property validation failure.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Get list of records.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The search query that is used to filter results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The limit used to specify the number of results on a single page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1000
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The offset used for selecting a specific page of results.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=collection": {
+                "schema": {
+                  "$ref": "#/components/schemas/accountCollection"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Insert record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "replace",
+            "in": "query",
+            "description": "The names of sublists on this record. All sublist lines will be replaced with lines specified in the request. The names are delimited by comma.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple sublists": {
+                "value": "sublist1,subrecord.sublist2"
+              },
+              "sublist on subrecord": {
+                "value": "subrecord.sublist"
+              },
+              "single sublist": {
+                "value": "sublist"
+              }
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyNameValidation",
+            "in": "header",
+            "description": "Sets the strictness of property name validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Warning"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyValueValidation",
+            "in": "header",
+            "description": "Sets the strictness of property value validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Error"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/vnd.oracle.resource+json; type=singular": {
+              "schema": {
+                "$ref": "#/components/schemas/account"
               }
             }
           },
@@ -2830,6 +3650,451 @@
         }
       }
     },
+    "/currency/{id}": {
+      "get": {
+        "tags": [
+          "Currency"
+        ],
+        "summary": "Get record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Internal identifier.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "expandSubResources",
+            "in": "query",
+            "description": "Set to 'true' to automatically expand all sublists, sublist lines, and subrecords on this record.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "simpleEnumFormat",
+            "in": "query",
+            "description": "Set to true to return enumeration values in a format that only shows the internal ID value.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "The names of the fields and sublists on the record. Only the selected fields and sublists will be returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple fields": {
+                "value": "field1,field2"
+              },
+              "single field": {
+                "value": "field"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved record.",
+            "headers": {
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/vnd.oracle.resource+json; type=singular": {
+                "schema": {
+                  "$ref": "#/components/schemas/currency"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Currency"
+        ],
+        "summary": "Insert or update record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "External identifier.",
+            "required": true,
+            "schema": {
+              "pattern": "eid:(.+)",
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyNameValidation",
+            "in": "header",
+            "description": "Sets the strictness of property name validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Warning"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyValueValidation",
+            "in": "header",
+            "description": "Sets the strictness of property value validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Error"
+            }
+          },
+          {
+            "name": "replace",
+            "in": "query",
+            "description": "The names of sublists on this record. All sublist lines will be replaced with lines specified in the request. The names are delimited by comma.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple sublists": {
+                "value": "sublist1,subrecord.sublist2"
+              },
+              "sublist on subrecord": {
+                "value": "subrecord.sublist"
+              },
+              "single sublist": {
+                "value": "sublist"
+              }
+            }
+          },
+          {
+            "name": "replaceSelectedFields",
+            "in": "query",
+            "description": "If set to 'true', all fields that should be deleted in the update request, including body fields, must be included in the 'replace' query parameter.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/vnd.oracle.resource+json; type=singular": {
+              "schema": {
+                "$ref": "#/components/schemas/currency"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Upserted record.",
+            "headers": {
+              "X-NetSuite-PropertyValidation": {
+                "description": "The description of a property validation failure.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Currency"
+        ],
+        "summary": "Remove record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Internal identifier.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Removed record."
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Currency"
+        ],
+        "summary": "Update record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Internal identifier.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyNameValidation",
+            "in": "header",
+            "description": "Sets the strictness of property name validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Warning"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyValueValidation",
+            "in": "header",
+            "description": "Sets the strictness of property value validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Error"
+            }
+          },
+          {
+            "name": "replace",
+            "in": "query",
+            "description": "The names of sublists on this record. All sublist lines will be replaced with lines specified in the request. The names are delimited by comma.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple sublists": {
+                "value": "sublist1,subrecord.sublist2"
+              },
+              "sublist on subrecord": {
+                "value": "subrecord.sublist"
+              },
+              "single sublist": {
+                "value": "sublist"
+              }
+            }
+          },
+          {
+            "name": "replaceSelectedFields",
+            "in": "query",
+            "description": "If set to 'true', all fields that should be deleted in the update request, including body fields, must be included in the 'replace' query parameter.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/vnd.oracle.resource+json; type=singular": {
+              "schema": {
+                "$ref": "#/components/schemas/currency"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Updated record.",
+            "headers": {
+              "X-NetSuite-PropertyValidation": {
+                "description": "The description of a property validation failure.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/customer/{id}": {
       "get": {
         "tags": [
@@ -3237,6 +4502,1341 @@
             "application/vnd.oracle.resource+json; type=singular": {
               "schema": {
                 "$ref": "#/components/schemas/customer"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Updated record.",
+            "headers": {
+              "X-NetSuite-PropertyValidation": {
+                "description": "The description of a property validation failure.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/term/{id}": {
+      "get": {
+        "tags": [
+          "Term"
+        ],
+        "summary": "Get record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Internal identifier.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "expandSubResources",
+            "in": "query",
+            "description": "Set to 'true' to automatically expand all sublists, sublist lines, and subrecords on this record.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "simpleEnumFormat",
+            "in": "query",
+            "description": "Set to true to return enumeration values in a format that only shows the internal ID value.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "The names of the fields and sublists on the record. Only the selected fields and sublists will be returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple fields": {
+                "value": "field1,field2"
+              },
+              "single field": {
+                "value": "field"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved record.",
+            "headers": {
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/vnd.oracle.resource+json; type=singular": {
+                "schema": {
+                  "$ref": "#/components/schemas/term"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Term"
+        ],
+        "summary": "Insert or update record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "External identifier.",
+            "required": true,
+            "schema": {
+              "pattern": "eid:(.+)",
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyNameValidation",
+            "in": "header",
+            "description": "Sets the strictness of property name validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Warning"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyValueValidation",
+            "in": "header",
+            "description": "Sets the strictness of property value validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Error"
+            }
+          },
+          {
+            "name": "replace",
+            "in": "query",
+            "description": "The names of sublists on this record. All sublist lines will be replaced with lines specified in the request. The names are delimited by comma.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple sublists": {
+                "value": "sublist1,subrecord.sublist2"
+              },
+              "sublist on subrecord": {
+                "value": "subrecord.sublist"
+              },
+              "single sublist": {
+                "value": "sublist"
+              }
+            }
+          },
+          {
+            "name": "replaceSelectedFields",
+            "in": "query",
+            "description": "If set to 'true', all fields that should be deleted in the update request, including body fields, must be included in the 'replace' query parameter.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/vnd.oracle.resource+json; type=singular": {
+              "schema": {
+                "$ref": "#/components/schemas/term"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Upserted record.",
+            "headers": {
+              "X-NetSuite-PropertyValidation": {
+                "description": "The description of a property validation failure.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Term"
+        ],
+        "summary": "Remove record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Internal identifier.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Removed record."
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Term"
+        ],
+        "summary": "Update record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Internal identifier.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyNameValidation",
+            "in": "header",
+            "description": "Sets the strictness of property name validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Warning"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyValueValidation",
+            "in": "header",
+            "description": "Sets the strictness of property value validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Error"
+            }
+          },
+          {
+            "name": "replace",
+            "in": "query",
+            "description": "The names of sublists on this record. All sublist lines will be replaced with lines specified in the request. The names are delimited by comma.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple sublists": {
+                "value": "sublist1,subrecord.sublist2"
+              },
+              "sublist on subrecord": {
+                "value": "subrecord.sublist"
+              },
+              "single sublist": {
+                "value": "sublist"
+              }
+            }
+          },
+          {
+            "name": "replaceSelectedFields",
+            "in": "query",
+            "description": "If set to 'true', all fields that should be deleted in the update request, including body fields, must be included in the 'replace' query parameter.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/vnd.oracle.resource+json; type=singular": {
+              "schema": {
+                "$ref": "#/components/schemas/term"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Updated record.",
+            "headers": {
+              "X-NetSuite-PropertyValidation": {
+                "description": "The description of a property validation failure.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/taxType/{id}": {
+      "get": {
+        "tags": [
+          "TaxType"
+        ],
+        "summary": "Get record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Internal identifier.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "expandSubResources",
+            "in": "query",
+            "description": "Set to 'true' to automatically expand all sublists, sublist lines, and subrecords on this record.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "simpleEnumFormat",
+            "in": "query",
+            "description": "Set to true to return enumeration values in a format that only shows the internal ID value.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "The names of the fields and sublists on the record. Only the selected fields and sublists will be returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple fields": {
+                "value": "field1,field2"
+              },
+              "single field": {
+                "value": "field"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved record.",
+            "headers": {
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/vnd.oracle.resource+json; type=singular": {
+                "schema": {
+                  "$ref": "#/components/schemas/taxType"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "TaxType"
+        ],
+        "summary": "Insert or update record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "External identifier.",
+            "required": true,
+            "schema": {
+              "pattern": "eid:(.+)",
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyNameValidation",
+            "in": "header",
+            "description": "Sets the strictness of property name validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Warning"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyValueValidation",
+            "in": "header",
+            "description": "Sets the strictness of property value validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Error"
+            }
+          },
+          {
+            "name": "replace",
+            "in": "query",
+            "description": "The names of sublists on this record. All sublist lines will be replaced with lines specified in the request. The names are delimited by comma.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple sublists": {
+                "value": "sublist1,subrecord.sublist2"
+              },
+              "sublist on subrecord": {
+                "value": "subrecord.sublist"
+              },
+              "single sublist": {
+                "value": "sublist"
+              }
+            }
+          },
+          {
+            "name": "replaceSelectedFields",
+            "in": "query",
+            "description": "If set to 'true', all fields that should be deleted in the update request, including body fields, must be included in the 'replace' query parameter.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/vnd.oracle.resource+json; type=singular": {
+              "schema": {
+                "$ref": "#/components/schemas/taxType"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Upserted record.",
+            "headers": {
+              "X-NetSuite-PropertyValidation": {
+                "description": "The description of a property validation failure.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "TaxType"
+        ],
+        "summary": "Remove record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Internal identifier.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Removed record."
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "TaxType"
+        ],
+        "summary": "Update record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Internal identifier.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyNameValidation",
+            "in": "header",
+            "description": "Sets the strictness of property name validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Warning"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyValueValidation",
+            "in": "header",
+            "description": "Sets the strictness of property value validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Error"
+            }
+          },
+          {
+            "name": "replace",
+            "in": "query",
+            "description": "The names of sublists on this record. All sublist lines will be replaced with lines specified in the request. The names are delimited by comma.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple sublists": {
+                "value": "sublist1,subrecord.sublist2"
+              },
+              "sublist on subrecord": {
+                "value": "subrecord.sublist"
+              },
+              "single sublist": {
+                "value": "sublist"
+              }
+            }
+          },
+          {
+            "name": "replaceSelectedFields",
+            "in": "query",
+            "description": "If set to 'true', all fields that should be deleted in the update request, including body fields, must be included in the 'replace' query parameter.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/vnd.oracle.resource+json; type=singular": {
+              "schema": {
+                "$ref": "#/components/schemas/taxType"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Updated record.",
+            "headers": {
+              "X-NetSuite-PropertyValidation": {
+                "description": "The description of a property validation failure.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/{id}": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Get record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Internal identifier.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "expandSubResources",
+            "in": "query",
+            "description": "Set to 'true' to automatically expand all sublists, sublist lines, and subrecords on this record.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "simpleEnumFormat",
+            "in": "query",
+            "description": "Set to true to return enumeration values in a format that only shows the internal ID value.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "The names of the fields and sublists on the record. Only the selected fields and sublists will be returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple fields": {
+                "value": "field1,field2"
+              },
+              "single field": {
+                "value": "field"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved record.",
+            "headers": {
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/vnd.oracle.resource+json; type=singular": {
+                "schema": {
+                  "$ref": "#/components/schemas/account"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Insert or update record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "External identifier.",
+            "required": true,
+            "schema": {
+              "pattern": "eid:(.+)",
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyNameValidation",
+            "in": "header",
+            "description": "Sets the strictness of property name validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Warning"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyValueValidation",
+            "in": "header",
+            "description": "Sets the strictness of property value validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Error"
+            }
+          },
+          {
+            "name": "replace",
+            "in": "query",
+            "description": "The names of sublists on this record. All sublist lines will be replaced with lines specified in the request. The names are delimited by comma.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple sublists": {
+                "value": "sublist1,subrecord.sublist2"
+              },
+              "sublist on subrecord": {
+                "value": "subrecord.sublist"
+              },
+              "single sublist": {
+                "value": "sublist"
+              }
+            }
+          },
+          {
+            "name": "replaceSelectedFields",
+            "in": "query",
+            "description": "If set to 'true', all fields that should be deleted in the update request, including body fields, must be included in the 'replace' query parameter.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/vnd.oracle.resource+json; type=singular": {
+              "schema": {
+                "$ref": "#/components/schemas/account"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Upserted record.",
+            "headers": {
+              "X-NetSuite-PropertyValidation": {
+                "description": "The description of a property validation failure.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Remove record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Internal identifier.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Removed record."
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Update record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Internal identifier.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyNameValidation",
+            "in": "header",
+            "description": "Sets the strictness of property name validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Warning"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyValueValidation",
+            "in": "header",
+            "description": "Sets the strictness of property value validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Error"
+            }
+          },
+          {
+            "name": "replace",
+            "in": "query",
+            "description": "The names of sublists on this record. All sublist lines will be replaced with lines specified in the request. The names are delimited by comma.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple sublists": {
+                "value": "sublist1,subrecord.sublist2"
+              },
+              "sublist on subrecord": {
+                "value": "subrecord.sublist"
+              },
+              "single sublist": {
+                "value": "sublist"
+              }
+            }
+          },
+          {
+            "name": "replaceSelectedFields",
+            "in": "query",
+            "description": "If set to 'true', all fields that should be deleted in the update request, including body fields, must be included in the 'replace' query parameter.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/vnd.oracle.resource+json; type=singular": {
+              "schema": {
+                "$ref": "#/components/schemas/account"
               }
             }
           },
@@ -6255,7 +8855,7 @@
             "$ref": "#/components/schemas/vendor"
           },
           "custcol_nondeductible_account": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "custcol_bb1_labour_type": {
             "$ref": "#/components/schemas/nsResource"
@@ -6414,6 +9014,50 @@
             "items": {
               "$ref": "#/components/schemas/customer-itemPricingElement"
             }
+          }
+        }
+      },
+      "currencyCollection": {
+        "type": "object",
+        "properties": {
+          "totalResults": {
+            "title": "Total Results",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "items": {
+            "title": "Items",
+            "type": "array",
+            "description": "An array field that represents a collection of elements, for example, sublist lines, multiselect items, or search results.",
+            "items": {
+              "$ref": "#/components/schemas/currency"
+            }
+          },
+          "links": {
+            "title": "Links",
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/nsLink"
+            }
+          },
+          "count": {
+            "title": "Count",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "hasMore": {
+            "title": "Has More Results",
+            "type": "boolean",
+            "readOnly": true
+          },
+          "offset": {
+            "title": "Query Offset",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
           }
         }
       },
@@ -6778,6 +9422,141 @@
           }
         },
         "x-ns-filterable": []
+      },
+      "term": {
+        "type": "object",
+        "properties": {
+          "isInactive": {
+            "title": "Inactive",
+            "type": "boolean",
+            "description": "Check this box to remove all references to this record from your account. You can reactivate the record at any time."
+          },
+          "discountPercentDateDriven": {
+            "title": "Date Driven % Discount",
+            "type": "number",
+            "description": "For date driven terms, enter the percentage discount if the invoice is paid early.",
+            "format": "float",
+            "nullable": true
+          },
+          "lastModifiedDate": {
+            "title": "Last Modified Date",
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "externalId": {
+            "title": "External ID",
+            "type": "string",
+            "nullable": true
+          },
+          "tname": {
+            "type": "string",
+            "nullable": true
+          },
+          "discountPercent": {
+            "title": "% Discount",
+            "type": "number",
+            "description": "For standard terms, enter the percentage discount if the invoice is paid early.",
+            "format": "float",
+            "nullable": true
+          },
+          "dateDriven": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "title": "Internal identifier",
+                "type": "string"
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            }
+          },
+          "dueNextMonthIfWithinDays": {
+            "title": "Due Next Month If Within Days",
+            "type": "integer",
+            "description": "For date driven terms, enter the number of days before the due date that the invoice can be postponed until the next month&apos;s due date. For example, if invoices are due on the 30th of each month and you enter 5 in this field, then invoices issued between the 25th and 30th are due for payment by the 30th of the following month. For another example, Day of Month Net Due = 15 and Due Next Month if Within Days = 30 Date range within 30 days: 5/16-6/14 move to 7/15 6/15-7/15 move to 8/15 8/16-9/14 move to 10/15 9/15-10/15 move to 11/15 10/16-11/14 move to 12/15 11/15-12/15 move to 1/5",
+            "format": "int64",
+            "nullable": true
+          },
+          "daysUntilExpiry": {
+            "title": "Days Till Discount Expires",
+            "type": "integer",
+            "description": "For standard terms, enter the number of days the early payment discount is available. For example, if the early payment discount is available for 15 days after the bill is issued, enter 15 in this field.",
+            "format": "int64",
+            "nullable": true
+          },
+          "dayOfMonthNetDue": {
+            "title": "Day Of Month Net Due",
+            "type": "integer",
+            "description": "For date driven terms, enter the day of the month when the net amount of the invoice is due. If you enter a date that does not exist in the month the transaction is due, the last day of the month becomes the due date.",
+            "format": "int64",
+            "nullable": true
+          },
+          "name": {
+            "title": "Terms",
+            "type": "string",
+            "description": "Enter the name for this record. This name appears in lists that include this record.",
+            "nullable": true
+          },
+          "daysUntilNetDue": {
+            "title": "Days Till Net Due",
+            "type": "integer",
+            "description": "Enter the number of days until the net amount of the bill becomes due. For example, if you are creating a term of Net 30, enter 30 in this field.",
+            "format": "int64",
+            "nullable": true
+          },
+          "longitemtype": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "title": "Internal ID",
+            "type": "string",
+            "nullable": true
+          },
+          "preferred": {
+            "title": "Preferred",
+            "type": "boolean",
+            "description": "Check this box to make this term or message show by default on sales transactions you create. Note: Terms set on customer records override terms marked as preferred."
+          },
+          "dayDiscountExpires": {
+            "title": "Day Discount Expires",
+            "type": "integer",
+            "description": "If you offer a discount for early payment under date driven terms, enter the last day of the month the early payment discount is available. For example, if the early payment discount is available through the 20th of each month, enter 20 in this field.",
+            "format": "int64",
+            "nullable": true
+          },
+          "refName": {
+            "title": "Reference Name",
+            "type": "string"
+          },
+          "links": {
+            "title": "Links",
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/nsLink"
+            }
+          }
+        },
+        "x-ns-filterable": [
+          "isInactive",
+          "discountPercentDateDriven",
+          "lastModifiedDate",
+          "externalId",
+          "discountPercent",
+          "dateDriven",
+          "dueNextMonthIfWithinDays",
+          "daysUntilExpiry",
+          "dayOfMonthNetDue",
+          "name",
+          "daysUntilNetDue",
+          "id",
+          "preferred",
+          "dayDiscountExpires"
+        ]
       },
       "vendorBillCollection": {
         "type": "object",
@@ -7366,7 +10145,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custcol_nondeductible_account": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "custcol_nx_case": {
             "$ref": "#/components/schemas/nsResource"
@@ -8587,7 +11366,7 @@
             "type": "string"
           },
           "entityCurrency": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/currency"
           }
         },
         "x-ns-sublistkey": {
@@ -9343,7 +12122,7 @@
             }
           },
           "defaultVendorPaymentAccount": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "custentity_zc_3wm_tlrnce_type_qty": {
             "$ref": "#/components/schemas/nsResource"
@@ -9357,6 +12136,9 @@
           "roles": {
             "$ref": "#/components/schemas/vendor-rolesCollection"
           },
+          "contactList": {
+            "$ref": "#/components/schemas/nsResourceCollection"
+          },
           "custentity_zc_prevailing_quantity": {
             "$ref": "#/components/schemas/nsResource"
           },
@@ -9364,13 +12146,13 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "currency": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/currency"
           },
           "custentity_zc_ap_payment_schedule": {
             "$ref": "#/components/schemas/nsResource"
           },
           "openingBalanceAccount": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "custentity_nx_location": {
             "$ref": "#/components/schemas/nsResource"
@@ -9391,7 +12173,7 @@
             "$ref": "#/components/schemas/vendor-ratesCollection"
           },
           "payablesAccount": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "custentity_eff_nsp2p_createdfrom_bill2pr": {
             "$ref": "#/components/schemas/nsResource"
@@ -9415,7 +12197,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "expenseAccount": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "custentity_zc_prevailing_amount": {
             "$ref": "#/components/schemas/nsResource"
@@ -9427,7 +12209,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "terms": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/term"
           },
           "category": {
             "$ref": "#/components/schemas/nsResource"
@@ -9436,7 +12218,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "defaultBankAccount": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "custentity_vl_trade_ventro": {
             "$ref": "#/components/schemas/nsResourceCollection"
@@ -9488,7 +12270,197 @@
             "$ref": "#/components/schemas/nsResource"
           }
         },
-        "x-ns-filterable": []
+        "x-ns-filterable": [
+          "expenseAccount",
+          "custentity_vl_main_delivery_method",
+          "isJobResourceVend",
+          "custentity_erpff_p2p_party_endpoint_id",
+          "custentity_bb1_cis_cisenabled",
+          "custentity_vl_entity_source",
+          "custentity_bb1_cis_ni_ref",
+          "emailTransactions",
+          "custentity_zc_3wm_exclude_from_3wm",
+          "custentity_vl_team_size",
+          "custentity_ff_sc_iban",
+          "custentity_zc_qty_tlrnce_percentage",
+          "balance",
+          "custentity_zc_amt_tlrnce_amount",
+          "terms",
+          "custentity_zc_prevailing_rate",
+          "printOnCheckAs",
+          "custentity_eff_nsp2p_lastrec_vatnumber",
+          "id",
+          "fax",
+          "unbilledOrdersPrimary",
+          "custentity_erpff_p2p_party_endp_sch_id",
+          "custentity_ff_sc_validation_rules",
+          "custentity_vl_emergency_contact_person",
+          "custentity_erpff_p2p_party_endp_scheme",
+          "custentity_eff_nsp2p_defaultitem",
+          "custentity_ff_sc_entity_ita_pay_term",
+          "workCalendar",
+          "custentity_zc_rate_tlrnce_percentage",
+          "dateCreated",
+          "custentity_nx_location",
+          "custentity_vl_entity_type",
+          "lastName",
+          "custentity_payment_type",
+          "receiptQuantityDiff",
+          "phone",
+          "companyName",
+          "custentitypayeeaccountaddress",
+          "custentity_eff_nsp2p_lastrec_iban",
+          "custentity_zc_prevailing_amount",
+          "custentity_vl_public_liability_expiry",
+          "custentity_erpff_p2p_party_endp_op_id",
+          "custentity_rss_website",
+          "custentity_vl_capacity_install_per_month",
+          "custentity_zc_3wm_tlrnce_type_qty",
+          "custentity_vl_trading_postcode",
+          "custentity_vl_trade_type",
+          "custentity_bb1_cis_worksref",
+          "isPerson",
+          "custentity_zc_amt_tlrnce_percentage",
+          "currency",
+          "custentity_zc_prevailing_quantity",
+          "custentity_zc_disable_ai_fld_pop",
+          "email",
+          "custentity_tax_contact_last",
+          "custentity_nx_labor_cost",
+          "custentity_vl_employers_liability_expiry",
+          "custentity_ff_sc_bank_code",
+          "url",
+          "custentity_vl_registered_address",
+          "custentity_zc_3wm_tlrnce_type_amt",
+          "custentity_vl_site_allocation",
+          "custentity_bb1_cis_contractor_type",
+          "custentity_eff_nsp2p_lastrec_compname",
+          "custentitypayeeaccountname",
+          "custentity_ff_sc_dis_lin_rec",
+          "custentity_tax_contact_middle",
+          "custentity_4601_defaultwitaxcode",
+          "custentity_vl_trading_address",
+          "billingClass",
+          "custentitypayeesortcode",
+          "custentity_vl_profl_indemnity_expiry",
+          "externalId",
+          "custentity_erpff_p2p_basw_tax_id",
+          "entityId",
+          "emailPreference",
+          "subsidiaryEdition",
+          "custentity_ff_sc_clickdata",
+          "defaultBankAccount",
+          "custentity_bb1_missingrecord",
+          "custentity_tax_contact",
+          "purchaseOrderAmount",
+          "isAutogeneratedRepresentingEntity",
+          "receiptQuantity",
+          "custentity_zc_rate_tlrnce_amount",
+          "payablesAccount",
+          "custentity_bb1_cis_hmrc_verification",
+          "contact",
+          "mobilePhone",
+          "balancePrimary",
+          "custentity_zc_po_required",
+          "unbilledOrders",
+          "custentity_eff_nsp2p_autoproc_billscreds",
+          "custentity_ff_sc_field_block_mapping",
+          "altPhone",
+          "custentity_zc_qty_tlrnce_amount",
+          "custentity_bb1_cis_utr",
+          "faxTransactions",
+          "custentity_rss_linkedin",
+          "custentity_ff_sc_ent_diff_pref",
+          "custentity_zc_ap_primary_beneficiary_acc",
+          "custentity_vl_average_lead_time_on_goods",
+          "custentity_vl_trade_ventro",
+          "altEmail",
+          "custentity_erpff_p2p_basw_tax_scheme",
+          "incoterm",
+          "purchaseOrderQuantityDiff",
+          "custentity_tax_contact_first",
+          "representingSubsidiary",
+          "salutation",
+          "custentity_bb1_cis_hmrc_country",
+          "isInactive",
+          "firstName",
+          "homePhone",
+          "contactList",
+          "defaultVendorPaymentAccount",
+          "legalName",
+          "title",
+          "custentity_vl_trade_type_other",
+          "laborCost",
+          "giveAccess",
+          "defaultShippingAddress",
+          "custentity_rss_yoe",
+          "custentity_nx_skill",
+          "purchaseOrderQuantity",
+          "custentity_bb1_cis_crn",
+          "custentity_zc_autoprocessing_preferences",
+          "custentity_vl_pli_amount",
+          "custentity_eff_nsp2p_lastrec_cocnumber",
+          "comments",
+          "accountNumber",
+          "lastModifiedDate",
+          "custentity_vl_contractor_location",
+          "middleName",
+          "custentitypayeeaccountnumber",
+          "printTransactions",
+          "receiptAmount",
+          "custentity_eff_nsp2p_procb2btran_aftersv",
+          "custentity_zc_ap_payment_schedule",
+          "custentity_eff_nsp2p_createdfrom_bill2pr",
+          "custentity_ff_sc_bank_account_number",
+          "custentity_zc_3wm_tlrnce_type_rate",
+          "custentity_erpff_p2p_basw_tax_scheme_id",
+          "creditLimit",
+          "category"
+        ]
+      },
+      "termCollection": {
+        "type": "object",
+        "properties": {
+          "totalResults": {
+            "title": "Total Results",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "items": {
+            "title": "Items",
+            "type": "array",
+            "description": "An array field that represents a collection of elements, for example, sublist lines, multiselect items, or search results.",
+            "items": {
+              "$ref": "#/components/schemas/term"
+            }
+          },
+          "links": {
+            "title": "Links",
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/nsLink"
+            }
+          },
+          "count": {
+            "title": "Count",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "hasMore": {
+            "title": "Has More Results",
+            "type": "boolean",
+            "readOnly": true
+          },
+          "offset": {
+            "title": "Query Offset",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          }
+        }
       },
       "customer-contactRolesElement": {
         "type": "object",
@@ -10441,7 +13413,7 @@
             ]
           },
           "custcol_nondeductible_account": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "projecttask": {
             "$ref": "#/components/schemas/nsResource"
@@ -10534,6 +13506,48 @@
             "type": "integer",
             "format": "int64",
             "readOnly": true
+          }
+        }
+      },
+      "account-localizationsCollection": {
+        "type": "object",
+        "properties": {
+          "links": {
+            "title": "Links",
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/nsLink"
+            }
+          },
+          "totalResults": {
+            "title": "Total Results",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "count": {
+            "title": "Count",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "hasMore": {
+            "title": "Has More Results",
+            "type": "boolean",
+            "readOnly": true
+          },
+          "offset": {
+            "title": "Query Offset",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/account-localizationsElement"
+            }
           }
         }
       },
@@ -10738,6 +13752,40 @@
           }
         }
       },
+      "account-accountContextSearchElement": {
+        "type": "object",
+        "properties": {
+          "links": {
+            "title": "Links",
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/nsLink"
+            }
+          },
+          "acctnumber": {
+            "title": "Number",
+            "type": "string",
+            "nullable": true
+          },
+          "acctname": {
+            "title": "Name",
+            "type": "string",
+            "nullable": true
+          },
+          "refName": {
+            "title": "Reference Name",
+            "type": "string"
+          },
+          "accountingcontext": {
+            "$ref": "#/components/schemas/nsResource"
+          }
+        },
+        "x-ns-sublistkey": {
+          "present": false
+        },
+        "x-ns-filterable": []
+      },
       "invoice-item-inventoryDetail-inventoryAssignmentElement": {
         "type": "object",
         "properties": {
@@ -10824,6 +13872,45 @@
               "internalId"
             ]
           }
+        },
+        "x-ns-filterable": []
+      },
+      "account-localizationsElement": {
+        "type": "object",
+        "properties": {
+          "links": {
+            "title": "Links",
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/nsLink"
+            }
+          },
+          "legalName": {
+            "title": "Legal Name",
+            "type": "string",
+            "nullable": true
+          },
+          "acctnumber": {
+            "title": "Number",
+            "type": "string",
+            "nullable": true
+          },
+          "acctname": {
+            "title": "Name",
+            "type": "string",
+            "nullable": true
+          },
+          "refName": {
+            "title": "Reference Name",
+            "type": "string"
+          },
+          "accountingcontext": {
+            "$ref": "#/components/schemas/nsResource"
+          }
+        },
+        "x-ns-sublistkey": {
+          "present": false
         },
         "x-ns-filterable": []
       },
@@ -11950,7 +15037,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "account": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "custcol_ph4014_src_vendorid": {
             "$ref": "#/components/schemas/vendor"
@@ -11992,7 +15079,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custcol_nondeductible_account": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "cseg_paactivitycode": {
             "$ref": "#/components/schemas/nsResource"
@@ -13810,7 +16897,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custbody_zc_ap_bank_acct_gl_acct": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "expense": {
             "$ref": "#/components/schemas/vendorBill-expenseCollection"
@@ -13864,10 +16951,10 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "currency": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/currency"
           },
           "terms": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/term"
           },
           "custbody_vl_linked_transaction": {
             "$ref": "#/components/schemas/nsResource"
@@ -13906,13 +16993,222 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "account": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "custbody_bb1_vl_project": {
             "$ref": "#/components/schemas/nsResource"
           }
         },
-        "x-ns-filterable": []
+        "x-ns-filterable": [
+          "custbody_vl_req_your_name",
+          "custbody_bb1_vl_rejection_reason",
+          "custbody_terms_dry_riser_maintenance",
+          "custbody_bb1_sc_nodates",
+          "cseg_accreditations",
+          "startDate",
+          "custbody_nondeductible_ref_tran",
+          "custbody_terms_lighting_maintenance",
+          "custbody_bb1_quote_released",
+          "custbody_vl_payment_certificate",
+          "custbody_terms_active_payment_install",
+          "custbody_terms_maintenance_assumptions",
+          "custbody_ph4185_bstyle",
+          "custbody_ph4014_wtax_applied",
+          "custbody_bb1_building",
+          "custbody_4601_pymnt_ref_id",
+          "custbody_nx_case",
+          "custbody_terms_provisional_costs",
+          "custbody_vl_req_urgency_tier",
+          "custbody_4601_total_amt",
+          "custbody_terms_payment_for_works",
+          "postingPeriod",
+          "custbody_cs_ventro_estimator",
+          "custbody_ph4014_wtax_wamt",
+          "custbody_terms_compartment_install",
+          "custbody_link_lsa",
+          "createdDate",
+          "custbody_terms_painting_and_decorating",
+          "custbody_nx_customer_signature",
+          "custbody_ph4014_wtax_code",
+          "custbodybillreferencenumber",
+          "custbody_msl_salesrep",
+          "custbody_terms_payment_healthchecks",
+          "custbody_bb1_hubspot_record_id",
+          "custbody_adjustment_journal",
+          "custbody_vl_scheduled_auto_approval",
+          "custbody_client_project_manager_email",
+          "currency",
+          "custbody_terms_extinguish_maintenance",
+          "custbody_link_name_lsa",
+          "custbody_bb1_vl_action_reject_field",
+          "custbody_country_of_origin",
+          "approvalStatus",
+          "custbody_terms_fd_hc_assumptions",
+          "custbody_unique_asset_code",
+          "custbody_vl_variation_labour_budget",
+          "custbody_zc_3wm_translations",
+          "custbody_vl_variation_prelim_budget",
+          "prevDate",
+          "custbody_itr_nexus",
+          "custbody_terms_damper_maintenance",
+          "custbody_report_timestamp",
+          "custbody_bb1_cc_note",
+          "custbody_msl_estimated_weeks",
+          "custbody_vl_req_contact_name",
+          "custbody_terms_sprinkler_maintenance",
+          "custbody_regime_code_of_supply",
+          "custbody_ff_sc_bank_details_sec",
+          "custbody_ph4014_wtax_bamt",
+          "custbody_erpff_p2p_auto_send_document",
+          "externalId",
+          "custbody_wtax_base_url",
+          "toBePrinted",
+          "custbody_vl_variation_material_budget",
+          "custbody_terms_contingency",
+          "custbody_projectbuyer",
+          "custbody_regime_code",
+          "custbodycus_ven_sales_order_department",
+          "custbody_test_terms_pdf",
+          "custbody_msl_commission_generated",
+          "custbody_bb1_link_to_sharepoint",
+          "discountDate",
+          "custbody_vl_req_date_required",
+          "custbody_ff_sc_trans_ita_apy_code",
+          "custbody_bb1_vl_project_owner",
+          "custbody_subcontractor",
+          "custbody_ph4014_wtax_reversal_flag",
+          "custbody_vl_temp",
+          "custbodyinvoiceonhold",
+          "custbody_ff_sc_field_block_mapping",
+          "custbody_ff_sc_po_validat_rule_applied",
+          "custbody_vl_invoice_group_no",
+          "custbody_total_quote_gp_percent",
+          "exchangeRate",
+          "custbody_itr_doc_number",
+          "custbody_vl_req_contact_number",
+          "custbody_zc_ai_field_application_data",
+          "custbody_bb1_custom_address",
+          "custbody_vl_new_invoice_number",
+          "custbodypmscheduler",
+          "custbody_requestor_header",
+          "custbody_bb1_legacytrannumber",
+          "custbody_payment_type",
+          "custbody_transaction_region",
+          "custbody_nondeductible_ref_genjrnl",
+          "custbody_bb1_suiteprojects_project",
+          "custbody_bb1_release_check",
+          "custbody_bb1_cr_supportingfile",
+          "custbody_vl_original_site_mgmt_budget",
+          "custbodyprojectqsheader",
+          "custbody_ff_sc_e_inv_pdf",
+          "custbody_bb1_save_as_draft",
+          "custbody_terms_hc_assumptions",
+          "custbody_vl_original_labour_budget",
+          "custbody_vl_next_approver",
+          "custbody_vl_bill_pymt_je_cr_data",
+          "custbody_terms_accreditations",
+          "custbody_bb1_vl_action_approve_field",
+          "custbody_ff_sc_clickdata",
+          "custbody_terms_compartment_maintenance",
+          "custbody_terms_suppresion_maintenance",
+          "custbody_vl_building_list",
+          "custbody_4601_doc_ref_id",
+          "custbody_bb1_sc_liquid_damages",
+          "dueDate",
+          "custbody_notc",
+          "custbody_ff_sc_bank_details",
+          "custbody_bb1_vl_current_approval",
+          "custbody_erpff_p2p_basware_send_note",
+          "custbody_intercompany_review",
+          "custbody_terms_fire_alarm_install",
+          "custbody_vl_linked_transaction",
+          "custbody_terms_compartmentation_hc",
+          "tranDate",
+          "memo",
+          "custbody_nx_projecttask",
+          "custbody_eff_nsp2p_buyerref",
+          "custbody_ordertype",
+          "custbody_vl_original_material_budget",
+          "terms",
+          "custbody_date_of_taxable_supply",
+          "id",
+          "custbody_nexus_notc",
+          "custbody_bb1_dispute_reason",
+          "custbody_suppliessupplier",
+          "custbody_vl_variation_site_manage_budg",
+          "custbody_vl_orig_preliminaries_budget",
+          "endDate",
+          "custbody_eff_nsp2p_paymentref",
+          "custbody_cash_register",
+          "custbody_bb1_custom_notes",
+          "custbody_terms_fd_healthcheck",
+          "custbody_billingcontact",
+          "custbody_bb1_created_by",
+          "custbody_cs_linked_project",
+          "custbody_subconnotes",
+          "custbody_update",
+          "custbody_zc_3wm_acceptance_reason",
+          "custbody_msl_qs_invoice",
+          "custbody_application_date",
+          "custbody_nx_customer",
+          "custbody_zc_ap_pay_from",
+          "custbody_terms_compartment_support",
+          "custbody_ph4014_wtax_rate",
+          "custbody_nx_idempotency_key",
+          "custbody_tc_relatedtask",
+          "custbody_vl_req_request_type",
+          "custbody_eff_nsp2p_serialnumbers",
+          "custbody_zc_ap_pay_to",
+          "custbody_bb1_credit_reason",
+          "custbody_terms_works_assumptions",
+          "custbody_4601_transactions",
+          "custbody_terms_hc_accreditations",
+          "custbody_terms_smoke_vent_maintenance",
+          "custbody_terms_fd_installation",
+          "custbody_erpff_p2p_document_sent",
+          "custbody_is_a_variation",
+          "entity",
+          "custbody_estimated_gp",
+          "custbody_nx_task",
+          "custbody_eff_nsp2p_supplier_notes",
+          "custbody_erpff_p2p_customer_reference",
+          "custbody_4110_customregnum",
+          "custbodyinterlegacytrannumber",
+          "custbody_vl_group_invoice",
+          "custbody_nx_asset",
+          "custbody_ff_sc_deliverydate",
+          "custbody_4601_wtax_withheld",
+          "custbody_ff_sc_trans_ita_pay_term",
+          "custbody_bb1_vendor_phone",
+          "custbody_delivery_terms",
+          "custbody_bb1_sc_completiondate",
+          "custbody_nx_case_type",
+          "custbody_project_framework",
+          "custbody_mode_of_transport",
+          "custbody_terms_fire_alarm_maintenance",
+          "custbody_4601_appliesto",
+          "custbody_alternate_site",
+          "custbody_msl_site_address_hidden",
+          "custbody_nondeductible_processed",
+          "custbody_ph4014_wtax_cpay_pacct",
+          "custbody_bb1_market",
+          "custbody_date_lsa",
+          "tranId",
+          "custbody_counterparty_vat",
+          "custbody_refno_originvoice",
+          "custbody_bb1_credit_requestor",
+          "lastModifiedDate",
+          "cseg_paactivitycode",
+          "custbody_eff_nsp2p_xml2nstrans",
+          "custbody_msl_site_address",
+          "custbody_ff_sc_b2pmodel",
+          "custbody_bb1_sc_startdate",
+          "custbody_bb1_current_cr_approver",
+          "custbody_vl_req_extra_comments",
+          "custbody_bb1_vl_project",
+          "custbody_bb1_credit_created",
+          "paymentHold"
+        ]
       },
       "invoice-timeElement": {
         "type": "object",
@@ -14412,7 +17708,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custcol_nondeductible_account": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "cseg_accreditations": {
             "$ref": "#/components/schemas/nsResource"
@@ -14683,6 +17979,50 @@
         },
         "x-ns-filterable": []
       },
+      "accountCollection": {
+        "type": "object",
+        "properties": {
+          "totalResults": {
+            "title": "Total Results",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "items": {
+            "title": "Items",
+            "type": "array",
+            "description": "An array field that represents a collection of elements, for example, sublist lines, multiselect items, or search results.",
+            "items": {
+              "$ref": "#/components/schemas/account"
+            }
+          },
+          "links": {
+            "title": "Links",
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/nsLink"
+            }
+          },
+          "count": {
+            "title": "Count",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "hasMore": {
+            "title": "Has More Results",
+            "type": "boolean",
+            "readOnly": true
+          },
+          "offset": {
+            "title": "Query Offset",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          }
+        }
+      },
       "creditMemo-applyElement": {
         "type": "object",
         "properties": {
@@ -14770,6 +18110,83 @@
           }
         },
         "x-ns-filterable": []
+      },
+      "taxType": {
+        "type": "object",
+        "properties": {
+          "country": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "title": "Internal identifier",
+                "type": "string",
+                "enum": [
+                  "GB"
+                ]
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            }
+          },
+          "customForm": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "title": "Internal identifier",
+                "type": "string",
+                "enum": [
+                  "-22519"
+                ]
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            }
+          },
+          "name": {
+            "title": "Name",
+            "type": "string",
+            "description": "Enter a name for this record.",
+            "nullable": true
+          },
+          "externalId": {
+            "title": "External ID",
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "title": "Description",
+            "type": "string",
+            "description": "Enter a description for this record.",
+            "nullable": true
+          },
+          "id": {
+            "title": "Internal ID",
+            "type": "string",
+            "nullable": true
+          },
+          "refName": {
+            "title": "Reference Name",
+            "type": "string"
+          },
+          "links": {
+            "title": "Links",
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/nsLink"
+            }
+          }
+        },
+        "x-ns-filterable": [
+          "country",
+          "name",
+          "description",
+          "id"
+        ]
       },
       "vendor-rolesElement": {
         "type": "object",
@@ -16441,7 +19858,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custbody_zc_ap_bank_acct_gl_acct": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "custbody_nx_case_type": {
             "$ref": "#/components/schemas/nsResource"
@@ -16612,7 +20029,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "currency": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/currency"
           },
           "custbody_nondeductible_ref_genjrnl": {
             "$ref": "#/components/schemas/nsResource"
@@ -16657,7 +20074,7 @@
             "$ref": "#/components/schemas/nsResourceCollection"
           },
           "terms": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/term"
           },
           "custbody_cs_linked_project": {
             "$ref": "#/components/schemas/nsResource"
@@ -16684,7 +20101,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "account": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "apply": {
             "$ref": "#/components/schemas/creditMemo-applyCollection"
@@ -16723,7 +20140,1045 @@
             "$ref": "#/components/schemas/nsResource"
           }
         },
-        "x-ns-filterable": []
+        "x-ns-filterable": [
+          "custbody_vl_req_your_name",
+          "custbody_bb1_vl_rejection_reason",
+          "custbody_terms_dry_riser_maintenance",
+          "custbody_bb1_sc_nodates",
+          "cseg_accreditations",
+          "startDate",
+          "custbody_nondeductible_ref_tran",
+          "custbody_terms_lighting_maintenance",
+          "custbody_bb1_quote_released",
+          "custbody_vl_payment_certificate",
+          "custbody_terms_active_payment_install",
+          "custbody_terms_maintenance_assumptions",
+          "custbody_ph4185_bstyle",
+          "custbody_ph4014_wtax_applied",
+          "custbody_bb1_building",
+          "custbody_4601_pymnt_ref_id",
+          "custbody_nx_case",
+          "custbody_terms_provisional_costs",
+          "custbody_vl_req_urgency_tier",
+          "custbody_4601_total_amt",
+          "custbody_terms_payment_for_works",
+          "postingPeriod",
+          "custbody_cs_ventro_estimator",
+          "custbody_ph4014_wtax_wamt",
+          "custbody_terms_compartment_install",
+          "custbody_link_lsa",
+          "asOfDate",
+          "createdDate",
+          "custbody_terms_painting_and_decorating",
+          "custbody_nx_customer_signature",
+          "custbody_ph4014_wtax_code",
+          "custbodybillreferencenumber",
+          "custbody_msl_salesrep",
+          "custbody_terms_payment_healthchecks",
+          "custbody_bb1_hubspot_record_id",
+          "custbody_adjustment_journal",
+          "custbody_vl_scheduled_auto_approval",
+          "custbody_client_project_manager_email",
+          "currency",
+          "custbody_terms_extinguish_maintenance",
+          "email",
+          "custbody_link_name_lsa",
+          "custbody_bb1_vl_action_reject_field",
+          "custbody_country_of_origin",
+          "custbody_terms_fd_hc_assumptions",
+          "custbody_unique_asset_code",
+          "custbody_vl_variation_labour_budget",
+          "custbody_zc_3wm_translations",
+          "custbody_vl_variation_prelim_budget",
+          "prevDate",
+          "custbody_itr_nexus",
+          "partner",
+          "custbody_terms_damper_maintenance",
+          "custbody_report_timestamp",
+          "custbody_bb1_cc_note",
+          "custbody_msl_estimated_weeks",
+          "custbody_vl_req_contact_name",
+          "custbody_terms_sprinkler_maintenance",
+          "custbody_regime_code_of_supply",
+          "custbody_ff_sc_bank_details_sec",
+          "custbody_ph4014_wtax_bamt",
+          "custbody_erpff_p2p_auto_send_document",
+          "externalId",
+          "custbody_wtax_base_url",
+          "toBePrinted",
+          "custbody_vl_variation_material_budget",
+          "custbody_terms_contingency",
+          "custbody_projectbuyer",
+          "custbody_regime_code",
+          "custbodycus_ven_sales_order_department",
+          "custbody_test_terms_pdf",
+          "toBeEmailed",
+          "custbody_msl_commission_generated",
+          "custbody_bb1_link_to_sharepoint",
+          "discountDate",
+          "custbody_vl_req_date_required",
+          "custbody_ff_sc_trans_ita_apy_code",
+          "custbody_bb1_vl_project_owner",
+          "custbody_subcontractor",
+          "custbody_ph4014_wtax_reversal_flag",
+          "shipMethod",
+          "custbody_vl_temp",
+          "custbodyinvoiceonhold",
+          "custbody_ff_sc_field_block_mapping",
+          "custbody_ff_sc_po_validat_rule_applied",
+          "custbody_vl_invoice_group_no",
+          "custbody_total_quote_gp_percent",
+          "exchangeRate",
+          "custbody_itr_doc_number",
+          "custbody_vl_req_contact_number",
+          "custbody_zc_ai_field_application_data",
+          "custbody_bb1_custom_address",
+          "custbody_vl_new_invoice_number",
+          "custbodypmscheduler",
+          "custbody_requestor_header",
+          "custbody_bb1_legacytrannumber",
+          "custbody_payment_type",
+          "custbody_transaction_region",
+          "custbody_nondeductible_ref_genjrnl",
+          "custbody_bb1_suiteprojects_project",
+          "toBeFaxed",
+          "custbody_bb1_release_check",
+          "custbody_bb1_cr_supportingfile",
+          "custbody_vl_original_site_mgmt_budget",
+          "custbodyprojectqsheader",
+          "custbody_ff_sc_e_inv_pdf",
+          "custbody_bb1_save_as_draft",
+          "custbody_terms_hc_assumptions",
+          "custbody_vl_original_labour_budget",
+          "custbody_vl_next_approver",
+          "shipDate",
+          "custbody_vl_bill_pymt_je_cr_data",
+          "custbody_terms_accreditations",
+          "custbody_bb1_vl_action_approve_field",
+          "custbody_ff_sc_clickdata",
+          "message",
+          "custbody_terms_compartment_maintenance",
+          "custbody_terms_suppresion_maintenance",
+          "custbody_vl_building_list",
+          "custbody_4601_doc_ref_id",
+          "custbody_bb1_sc_liquid_damages",
+          "dueDate",
+          "custbody_notc",
+          "custbody_ff_sc_bank_details",
+          "custbody_bb1_vl_current_approval",
+          "custbody_erpff_p2p_basware_send_note",
+          "custbody_intercompany_review",
+          "custbody_terms_fire_alarm_install",
+          "custbody_vl_linked_transaction",
+          "custbody_terms_compartmentation_hc",
+          "tranDate",
+          "memo",
+          "custbody_nx_projecttask",
+          "custbody_eff_nsp2p_buyerref",
+          "custbody_ordertype",
+          "custbody_vl_original_material_budget",
+          "terms",
+          "custbody_date_of_taxable_supply",
+          "id",
+          "custbody_nexus_notc",
+          "custbody_bb1_dispute_reason",
+          "custbody_suppliessupplier",
+          "custbody_vl_variation_site_manage_budg",
+          "custbody_vl_orig_preliminaries_budget",
+          "endDate",
+          "custbody_eff_nsp2p_paymentref",
+          "custbody_cash_register",
+          "custbody_bb1_custom_notes",
+          "custbody_terms_fd_healthcheck",
+          "custbody_billingcontact",
+          "custbody_bb1_created_by",
+          "custbody_cs_linked_project",
+          "custbody_subconnotes",
+          "custbody_update",
+          "estGrossProfitPercent",
+          "custbody_zc_3wm_acceptance_reason",
+          "custbody_msl_qs_invoice",
+          "tranIsVsoeBundle",
+          "custbody_application_date",
+          "custbody_nx_customer",
+          "custbody_zc_ap_pay_from",
+          "custbody_terms_compartment_support",
+          "custbody_ph4014_wtax_rate",
+          "custbody_nx_idempotency_key",
+          "custbody_tc_relatedtask",
+          "custbody_vl_req_request_type",
+          "custbody_eff_nsp2p_serialnumbers",
+          "custbody_zc_ap_pay_to",
+          "custbody_bb1_credit_reason",
+          "custbody_terms_works_assumptions",
+          "custbody_4601_transactions",
+          "custbody_terms_hc_accreditations",
+          "custbody_terms_smoke_vent_maintenance",
+          "custbody_terms_fd_installation",
+          "custbody_erpff_p2p_document_sent",
+          "custbody_is_a_variation",
+          "bulkProcSubmission",
+          "entity",
+          "custbody_estimated_gp",
+          "custbody_nx_task",
+          "custbody_eff_nsp2p_supplier_notes",
+          "custbody_erpff_p2p_customer_reference",
+          "custbody_4110_customregnum",
+          "custbodyinterlegacytrannumber",
+          "custbody_vl_group_invoice",
+          "custbody_nx_asset",
+          "custbody_ff_sc_deliverydate",
+          "custbody_4601_wtax_withheld",
+          "custbody_ff_sc_trans_ita_pay_term",
+          "custbody_bb1_vendor_phone",
+          "custbody_delivery_terms",
+          "job",
+          "custbody_bb1_sc_completiondate",
+          "otherRefNum",
+          "custbody_nx_case_type",
+          "custbody_project_framework",
+          "custbody_mode_of_transport",
+          "custbody_terms_fire_alarm_maintenance",
+          "custbody_4601_appliesto",
+          "custbody_alternate_site",
+          "custbody_msl_site_address_hidden",
+          "custbody_nondeductible_processed",
+          "custbody_ph4014_wtax_cpay_pacct",
+          "custbody_bb1_market",
+          "custbody_date_lsa",
+          "tranId",
+          "custbody_counterparty_vat",
+          "custbody_refno_originvoice",
+          "custbody_bb1_credit_requestor",
+          "lastModifiedDate",
+          "cseg_paactivitycode",
+          "custbody_eff_nsp2p_xml2nstrans",
+          "custbody_msl_site_address",
+          "custbody_ff_sc_b2pmodel",
+          "custbody_bb1_sc_startdate",
+          "custbody_bb1_current_cr_approver",
+          "custbody_vl_req_extra_comments",
+          "custbody_bb1_vl_project",
+          "custbody_bb1_credit_created"
+        ]
+      },
+      "currency": {
+        "type": "object",
+        "properties": {
+          "isInactive": {
+            "title": "Inactive",
+            "type": "boolean",
+            "description": "Check this box to make the currency record is inactive, or clear it to make the record active. You cannot make a currency inactive if any open transactions exist in that currency."
+          },
+          "symbol": {
+            "title": "ISO Code",
+            "type": "string",
+            "description": "Enter the three-letter International Standards Organization (ISO) code for this currency. For example, you would use PHP for Philippines pesos, UYU for Uruguayan pesos, and MXN for Mexican pesos.",
+            "nullable": true
+          },
+          "isAnchorCurrency": {
+            "title": "Is Anchor Currency",
+            "type": "boolean",
+            "description": "A check in this box indicates that the currency has been selected as an anchor currency in the accounting preferences. To clear the box, change the selection in the accounting preference under Use Triangulation Calculation by NetSuite. If this currency is a designated anchor currency and has been used in an exchange rate calculation, you cannot delete this currency. For more information about triangulation and anchor currencies, see the help topics Methods for Obtaining Exchange Rates andAnchor Currencies."
+          },
+          "includeInFxRateUpdates": {
+            "title": "Automatic Update",
+            "type": "boolean",
+            "description": "Check this box to update currency exchange rates daily."
+          },
+          "lastModifiedDate": {
+            "title": "Last Modified Date",
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "exchangeRate": {
+            "title": "Default Exchange Rate ( To Root Subsidiary Currency )",
+            "type": "number",
+            "description": "Enter an exchange rate for this currency against the base currency of this company, or if you use OneWorld, for this currency against the base currency of the root parent subsidiary. The exchange rate is equal to the base currency amount divided by the foreign currency amount. For example, if your company is located in Canada (base currency) and you are defining the U.S. dollar (foreign currency), and the current exchange rate is 1.02 Canadian dollars to 1.00 U.S. dollar, the Default Exchange Rate for the U.S. dollar is 1.02/1.00, or 1.02. This rate is the basis for rates in the Currency Exchange Rates table that are used in foreign currency transactions. If you use OneWorld, this rate also is the basis for rates in the Consolidated Exchange Rates table that are used in consolidated financials. For more information, see the help topic Currency Exchange Rates.",
+            "format": "double",
+            "nullable": true
+          },
+          "externalId": {
+            "title": "External ID",
+            "type": "string",
+            "nullable": true
+          },
+          "isBaseCurrency": {
+            "title": "Is Base Currency",
+            "type": "boolean",
+            "description": "Indicates that this currency is the company&apos;s base currency or in OneWorld accounts, the base currency for a subsidiary. Note: After you have entered transactions in foreign currencies, you cannot change a base currency."
+          },
+          "locale": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "title": "Internal identifier",
+                "type": "string",
+                "enum": [
+                  "it_CH",
+                  "en_TC",
+                  "af_ZA",
+                  "es_EA",
+                  "es_EC",
+                  "pt_BR",
+                  "en_CY",
+                  "fr_LU",
+                  "nl_AN",
+                  "es_UY",
+                  "en_TT",
+                  "es_ES",
+                  "pt_ST",
+                  "en_DM",
+                  "en_TZ",
+                  "es_ES_EURO",
+                  "fr_ML",
+                  "de_DE_onLQA",
+                  "es_VE",
+                  "nl_BE",
+                  "da_DK",
+                  "pt_AO",
+                  "to_TO",
+                  "en_UG",
+                  "am_ET",
+                  "ss_SZ",
+                  "nl_BQ",
+                  "ar",
+                  "pt_AW",
+                  "ko_KR",
+                  "en_US",
+                  "fr_BE_EURO",
+                  "ko_KP",
+                  "si_AQ",
+                  "fr_MG",
+                  "el_GR",
+                  "be_BY",
+                  "en_AU",
+                  "he_IL",
+                  "en_AW",
+                  "es_SV",
+                  "en_BB",
+                  "ar_YE",
+                  "es_CO",
+                  "es_CL",
+                  "en_BM",
+                  "es_CR",
+                  "pa_IN",
+                  "en_SC",
+                  "en_BS",
+                  "sm_WS",
+                  "it_IT_EURO",
+                  "fr_KM",
+                  "es_CU",
+                  "en_SB",
+                  "en_SG",
+                  "en_BW",
+                  "en_SH",
+                  "en_BZ",
+                  "en_SL",
+                  "az_AZ",
+                  "fi_FI",
+                  "en_SS",
+                  "sr_YU",
+                  "en_CD",
+                  "en_CA",
+                  "ka_GE",
+                  "lv_LV",
+                  "uk_UA",
+                  "es_DO",
+                  "ur_PK",
+                  "ar_IQ",
+                  "fr_LU_EURO",
+                  "pt_PT",
+                  "fr_FR_EURO",
+                  "en_PH",
+                  "th_TH",
+                  "bn_BD",
+                  "si_LK",
+                  "en_PG",
+                  "hu_HU",
+                  "ar_SA",
+                  "ar_SD",
+                  "ru_KZ",
+                  "ar_BH",
+                  "nl_BE_EURO",
+                  "ro_MD",
+                  "en_QA",
+                  "ru_KG",
+                  "es_AR",
+                  "ta_IN",
+                  "sr_RS",
+                  "aa_ER",
+                  "en",
+                  "de_DE_EURO",
+                  "zh_MO",
+                  "en_AE",
+                  "ar_SY",
+                  "es_BO",
+                  "en_AI",
+                  "no_NO",
+                  "en_AG",
+                  "nl_SR",
+                  "fr_VU",
+                  "en_MW",
+                  "gu_AQ",
+                  "ar_TN",
+                  "nl_SX",
+                  "hi_IN",
+                  "en_NA",
+                  "mn_MN",
+                  "en_NG",
+                  "fr_FR",
+                  "ms_MY",
+                  "nl_CW",
+                  "uz_UZ",
+                  "ar_DJ",
+                  "sr_CS",
+                  "de_AT_EURO",
+                  "en_NZ",
+                  "es_PE",
+                  "es_PA",
+                  "fa_IR",
+                  "ar_DZ",
+                  "fr_GN",
+                  "lb_LU",
+                  "xx_US",
+                  "pt_CV",
+                  "sh_RS",
+                  "ht_HT",
+                  "fr_WF",
+                  "es_AR_onLQA",
+                  "es_PR",
+                  "ar_EG",
+                  "es_PY",
+                  "fr_GA",
+                  "en_KW",
+                  "de_AT",
+                  "ro_RO",
+                  "en_KY",
+                  "fr_FR_onLQA",
+                  "fr_DJ",
+                  "ca_ES_EURO",
+                  "cs_CZ",
+                  "en_LC",
+                  "pl_AQ",
+                  "fr_TD",
+                  "fr_TG",
+                  "es_MX",
+                  "sv_AX",
+                  "sk_SK",
+                  "en_LR",
+                  "en_LS",
+                  "ar_OM",
+                  "dz_BT",
+                  "te_IN",
+                  "de_LU_EURO",
+                  "sq_AL",
+                  "sv_SE",
+                  "sn_ZW",
+                  "es_NI",
+                  "en_IE_EURO",
+                  "my_MM",
+                  "en_MF",
+                  "en_MU",
+                  "it_IT",
+                  "pl_PL",
+                  "fr_BE",
+                  "fr_BF",
+                  "tr_TR",
+                  "fr_BI",
+                  "fr_BJ",
+                  "id_ID",
+                  "fr_RW",
+                  "en_ZM",
+                  "km_KH",
+                  "ja_JP",
+                  "de_DE",
+                  "fr_BL",
+                  "tg_TJ",
+                  "ar_QA",
+                  "de_CH",
+                  "zh_HK",
+                  "pt_PT_EURO",
+                  "en_JO",
+                  "en_JM",
+                  "fr_CA",
+                  "nl_NL_EURO",
+                  "fr_CF",
+                  "fr_CG",
+                  "fr_CD",
+                  "pa_AQ",
+                  "fr_CH",
+                  "xx_US_wthId",
+                  "fr_CI",
+                  "pt_GW",
+                  "vi_VN",
+                  "ru_MD",
+                  "fr_CM",
+                  "fr_SC",
+                  "en_KE",
+                  "ne_NP",
+                  "bs_BA",
+                  "sl_SI",
+                  "en_KN",
+                  "fr_SN",
+                  "ar_AE",
+                  "en_GY",
+                  "tl_PH",
+                  "ca_ES",
+                  "es_IC",
+                  "lo_LA",
+                  "kn_IN",
+                  "so_SO",
+                  "fr_PF",
+                  "ar_JO",
+                  "nl_NL",
+                  "is_IS",
+                  "fi_FI_EURO",
+                  "pt_MZ",
+                  "sk_SK_EURO",
+                  "sl_SI_EURO",
+                  "en_IE",
+                  "ms_BN",
+                  "hr_HR",
+                  "ar_KW",
+                  "de_LU",
+                  "lt_LT",
+                  "en_IN",
+                  "ps_AF",
+                  "en_ZA",
+                  "en_VC",
+                  "ru_RU",
+                  "sh_YU",
+                  "ar_LB",
+                  "mr_IN",
+                  "dv_MV",
+                  "fj_FJ",
+                  "zh_TW",
+                  "tk_TM",
+                  "ar_LY",
+                  "en_VU",
+                  "fr_NE",
+                  "en_FK",
+                  "es_GT",
+                  "fr_NC",
+                  "es_GQ",
+                  "fa_AF",
+                  "bg_BG",
+                  "hy_AM",
+                  "en_CY_EURO",
+                  "mk_MK",
+                  "ar_MA",
+                  "en_GD",
+                  "en_GB",
+                  "es_HN",
+                  "gu_IN",
+                  "en_GH",
+                  "et_EE",
+                  "en_GI",
+                  "zh_CN",
+                  "en_GM",
+                  "ar_MR"
+                ]
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            }
+          },
+          "fxRateUpdateTimezone": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "title": "Internal identifier",
+                "type": "string",
+                "enum": [
+                  "1",
+                  "2",
+                  "3",
+                  "4"
+                ]
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            }
+          },
+          "overrideCurrencyFormat": {
+            "title": "Override Currency Format",
+            "type": "boolean",
+            "description": "Check this box to customize the currency format."
+          },
+          "formatSample": {
+            "title": "Format Sample",
+            "type": "string",
+            "description": "This field displays a sample of how currency amounts display for the selected format. The decimal precision shown cannot be changed. Note: The decimal precision shown is the precision used for both inventory reporting and for costing calculations.",
+            "nullable": true
+          },
+          "currencyPrecision": {
+            "title": "Currency Precision",
+            "type": "integer",
+            "description": "Displays the precision of the currency, which designates the number of digits to the right of the decimal point used in currency transactions. Precision can be zero or two. The level of decimal precision indicated is used for inventory costing calculations to maintains consistency between inventory costing and reporting. Values in report results are rounded to the base currency precision. This rounding applies to currency values and non-currency values, including formula column values. To change this read-only field to a dropdown list through which you can change the precision from zero or two, contact NetSuite Technical Support.",
+            "format": "int64",
+            "nullable": true
+          },
+          "name": {
+            "title": "Name",
+            "type": "string",
+            "description": "Enter a unique name for the currency. Because many countries use the same name for their currencies, you should use a combined name that includes the country name or abbreviation as well as the name of the currency. For example, pesos are the currency in the Philippines, Uruguay, and Mexico. In the Name field, you might enter “Mexican peso.” This name appears in the Currency field on records and transactions.",
+            "nullable": true
+          },
+          "id": {
+            "title": "Internal ID",
+            "type": "string",
+            "nullable": true
+          },
+          "symbolPlacement": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "title": "Internal identifier",
+                "type": "string",
+                "enum": [
+                  "1",
+                  "2"
+                ]
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            }
+          },
+          "displaySymbol": {
+            "title": "Symbol",
+            "type": "string",
+            "description": "Enter the currency symbol and text to use for this currency. Include spaces if you want to separate the symbol from the currency value. For example, $ USD or $CAD.",
+            "nullable": true
+          },
+          "refName": {
+            "title": "Reference Name",
+            "type": "string"
+          },
+          "links": {
+            "title": "Links",
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/nsLink"
+            }
+          }
+        },
+        "x-ns-filterable": [
+          "isInactive",
+          "symbol",
+          "isAnchorCurrency",
+          "includeInFxRateUpdates",
+          "lastModifiedDate",
+          "exchangeRate",
+          "externalId",
+          "isBaseCurrency",
+          "fxRateUpdateTimezone",
+          "overrideCurrencyFormat",
+          "currencyPrecision",
+          "name",
+          "id",
+          "symbolPlacement",
+          "displaySymbol"
+        ]
+      },
+      "account": {
+        "type": "object",
+        "properties": {
+          "isInactive": {
+            "title": "Inactive",
+            "type": "boolean",
+            "description": "Check this box to inactivate this account. Inactive accounts do not show in lists on transactions and records."
+          },
+          "isSummary": {
+            "title": "Summary",
+            "type": "boolean",
+            "description": "Check this box to make this account record solely for reporting purposes. Summary accounts are useful when you want to create a non-posting, inactive parent account that has active child accounts. If you do not have a OneWorld account, new summary accounts cannot have an opening balance, but you can convert an existing account with a transaction balance into a summary account. In this case, you cannot post additional transactions to the account. Summary accounts appear with their children in the chart of accounts list. You cannot merge a summary account into another account."
+          },
+          "sBankName": {
+            "title": "Bank Name",
+            "type": "string",
+            "description": "Enter the name of your bank.",
+            "nullable": true
+          },
+          "openingBalance": {
+            "title": "Opening Balance",
+            "type": "number",
+            "description": "Enter an opening balance for this account.",
+            "format": "double",
+            "nullable": true
+          },
+          "tranDate": {
+            "title": "Date",
+            "type": "string",
+            "description": "Enter the date of the opening balance of this account.",
+            "format": "date",
+            "nullable": true
+          },
+          "externalId": {
+            "title": "External ID",
+            "type": "string",
+            "description": "Returns the account&apos;s external ID, if one is assigned.",
+            "nullable": true
+          },
+          "sBankRoutingNumber": {
+            "title": "Bank Routing Number",
+            "type": "string",
+            "description": "Enter the 9-digit routing number for this bank account.",
+            "nullable": true
+          },
+          "description": {
+            "title": "Description",
+            "type": "string",
+            "description": "Enter a description for this account. You can enter up to 255 alphanumeric characters.",
+            "nullable": true
+          },
+          "eliminate": {
+            "title": "Eliminate Intercompany Transactions",
+            "type": "boolean",
+            "description": "Check this box to make this account an intercompany account. Intercompany accounts are used to record transactions between subsidiaries. You can post both intercompany transactions and non-intercompany transactions to most intercompany accounts. Intercompany Accounts Receivable and Intercompany Accounts Payable, however, can be used only for recording amounts that are candidates for eliminations. For details, see the help topic Intercompany Accounts."
+          },
+          "inventory": {
+            "title": "Inventory",
+            "type": "boolean",
+            "description": "If this will be an Other Current Asset account and you want the balance of this account included in the total balance of the Inventory KPI, select the Inventory box."
+          },
+          "custrecord_ff_sc_acc_srvc_for_taxation": {
+            "title": "Service - for taxation",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "revalue": {
+            "title": "Revalue Open Balance for Foreign Currency Transactions",
+            "type": "boolean",
+            "description": "Check this box to select this account for open balance currency revaluation."
+          },
+          "sBankCompanyId": {
+            "title": "Bank Account Number",
+            "type": "string",
+            "description": "Enter the bank account number, up to 20 digits.",
+            "nullable": true
+          },
+          "acctNumber": {
+            "title": "Number",
+            "type": "string",
+            "description": "Enter the number to identify this account. The number can be alphanumeric. The maximum number of characters is 60.",
+            "nullable": true
+          },
+          "curDocNum": {
+            "title": "Next Check Number",
+            "type": "integer",
+            "description": "Enter a number to reset the default check number that appears on transactions such as checks and bill payments. By default, this field shows the highest check number in the account plus one. The number you enter in the Next Check Number field of the account record determines the number that appears in the Check Number field on transactions linked to that account.",
+            "format": "int64",
+            "nullable": true
+          },
+          "sSpecAcct": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "title": "Internal identifier",
+                "type": "string",
+                "enum": [
+                  "CommPay",
+                  "DeferExpense",
+                  "UnbilledRec",
+                  "SalesTaxPay",
+                  "Tax",
+                  "PSTPay",
+                  "CumulTransAdj",
+                  "RevArrng",
+                  "DefRevClearing",
+                  "Opprtnty",
+                  "PSTExp",
+                  "PayUnemp",
+                  "RefundPay",
+                  "TrnfrOrd",
+                  "FailedACH",
+                  "AccumDeprec",
+                  "OpeningBalEquity",
+                  "PayWage",
+                  "RecvNotBill",
+                  "SalesOrd",
+                  "PayrollLiab",
+                  "UnrERV",
+                  "PayrollFloat",
+                  "DirectLabor",
+                  "UnappvPymt",
+                  "InterCoPayRec",
+                  "IndirectLabor",
+                  "PurchOrd",
+                  "MbHtpOffsetAcct",
+                  "PayLocal",
+                  "PayState",
+                  "PayMed",
+                  "InvInTransit",
+                  "RealizedERV",
+                  "RetEarnings",
+                  "ClearingPymt",
+                  "PayrollExp",
+                  "TaxLiability",
+                  "AdvPaid",
+                  "GSTPay",
+                  "Estimate",
+                  "FxRateVariance",
+                  "COGS",
+                  "MatchingUnrERV",
+                  "RtnAuth",
+                  "InvtAsset",
+                  "Tegata",
+                  "PayFed",
+                  "AcctRec",
+                  "DeferRevenue",
+                  "UncatExpense",
+                  "WorkOrd",
+                  "UnappvExpRept",
+                  "CustAuth",
+                  "JobCostVariance",
+                  "VendAuth",
+                  "RndERV",
+                  "PayrollWage",
+                  "CustDep",
+                  "UncatIncome",
+                  "PurchReq",
+                  "RtnNotCredit",
+                  "Netting",
+                  "PayComm",
+                  "PayAdjst",
+                  "AcctPay",
+                  "InvInTransitExt",
+                  "PaySS",
+                  "UndepFunds",
+                  "CTA-E"
+                ]
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            }
+          },
+          "id": {
+            "title": "Internal ID",
+            "type": "string",
+            "description": "Returns the account&apos;s internal ID.",
+            "nullable": true
+          },
+          "accountSearchDisplayNameCopy": {
+            "title": "Name",
+            "type": "string",
+            "description": "Returns the account number and name, as it appears in searches.",
+            "nullable": true
+          },
+          "lastModifiedDate": {
+            "title": "Last Modified Date",
+            "type": "string",
+            "description": "Returns the date on which the account record was last modified.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "generalRate": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "title": "Internal identifier",
+                "type": "string",
+                "enum": [
+                  "AVERAGE",
+                  "HISTORICAL",
+                  "CURRENT"
+                ]
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            }
+          },
+          "cashFlowRate": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "title": "Internal identifier",
+                "type": "string",
+                "enum": [
+                  "AVERAGE",
+                  "HISTORICAL",
+                  "CURRENT"
+                ]
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            }
+          },
+          "acctType": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "title": "Internal identifier",
+                "type": "string",
+                "enum": [
+                  "NonPosting",
+                  "Bank",
+                  "LongTermLiab",
+                  "OthExpense",
+                  "DeferExpense",
+                  "Income",
+                  "COGS",
+                  "UnbilledRec",
+                  "Equity",
+                  "FixedAsset",
+                  "OthCurrAsset",
+                  "AcctRec",
+                  "DeferRevenue",
+                  "CredCard",
+                  "OthCurrLiab",
+                  "OthIncome",
+                  "Stat",
+                  "Expense",
+                  "AcctPay",
+                  "OthAsset"
+                ]
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            }
+          },
+          "includeChildren": {
+            "title": "Include Children",
+            "type": "boolean",
+            "description": "Check the Include Children box to share the account with all the sub-subsidiaries associated with each subsidiary selected in the Subsidiary field."
+          },
+          "accountSearchDisplayName": {
+            "title": "Display Name",
+            "type": "string",
+            "description": "Returns the account number and name, as it appears in searches. The returned name is a link to the account record.",
+            "nullable": true
+          },
+          "unit": {
+            "title": "Default Unit",
+            "type": "string",
+            "description": "This field displays the base unit assigned to the Unit Type. The default unit cannot be changed.",
+            "nullable": true
+          },
+          "displayNameWithHierarchy": {
+            "title": "Display Name (with hierarchy)",
+            "type": "string",
+            "description": "Returns the display name of the account in order of hierarchy. Accounts are returned grouped. If you have three statistical accounts, 1002 Conference Room Square Footage appears before 1003 Collaboration Space Square Footage. And that account appears before 1004 Development Staff.",
+            "nullable": true
+          },
+          "reconcileWithMatching": {
+            "title": "Use Match Bank Data and Reconcile Account Statement Pages",
+            "type": "boolean",
+            "description": "Check this box if you want to use the Match Bank Data and Reconcile Account Statement pages for this account. The original reconciliation pages are no longer supported but are still available. To use the original pages, clear the box."
+          },
+          "fullName": {
+            "title": "Full Name",
+            "type": "string",
+            "description": "Returns the name of the account, but does not include the account number.",
+            "nullable": true
+          },
+          "acctName": {
+            "title": "Name",
+            "type": "string",
+            "description": "Enter up to 31 characters for an account name that will appear on all reports. If you want to use GL account numbers and do not see a Number field above the Name field, go to Setup &gt; Accounting &gt; Preferences &gt; Accounting Preferences, and check the Use Account Numbers box. Save the preference, and return to this page.",
+            "nullable": true
+          },
+          "refName": {
+            "title": "Reference Name",
+            "type": "string"
+          },
+          "links": {
+            "title": "Links",
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/nsLink"
+            }
+          },
+          "subsidiary": {
+            "$ref": "#/components/schemas/nsResourceCollection"
+          },
+          "deferralAcct": {
+            "$ref": "#/components/schemas/account"
+          },
+          "location": {
+            "$ref": "#/components/schemas/nsResource"
+          },
+          "billableExpensesAcct": {
+            "$ref": "#/components/schemas/account"
+          },
+          "department": {
+            "$ref": "#/components/schemas/nsResource"
+          },
+          "unitsType": {
+            "$ref": "#/components/schemas/nsResource"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/currency"
+          },
+          "class": {
+            "$ref": "#/components/schemas/nsResource"
+          },
+          "accountContextSearch": {
+            "$ref": "#/components/schemas/account-accountContextSearchCollection"
+          },
+          "localizations": {
+            "$ref": "#/components/schemas/account-localizationsCollection"
+          },
+          "category1099Misc": {
+            "$ref": "#/components/schemas/nsResource"
+          },
+          "parent": {
+            "$ref": "#/components/schemas/account"
+          }
+        },
+        "x-ns-filterable": [
+          "isInactive",
+          "parent",
+          "isSummary",
+          "sBankName",
+          "externalId",
+          "billableExpensesAcct",
+          "sBankRoutingNumber",
+          "description",
+          "eliminate",
+          "inventory",
+          "custrecord_ff_sc_acc_srvc_for_taxation",
+          "revalue",
+          "acctNumber",
+          "sSpecAcct",
+          "unitsType",
+          "currency",
+          "id",
+          "accountSearchDisplayNameCopy",
+          "department",
+          "class",
+          "category1099Misc",
+          "lastModifiedDate",
+          "generalRate",
+          "cashFlowRate",
+          "deferralAcct",
+          "subsidiary",
+          "acctType",
+          "includeChildren",
+          "accountSearchDisplayName",
+          "unit",
+          "displayNameWithHierarchy",
+          "location",
+          "reconcileWithMatching",
+          "fullName"
+        ]
       },
       "vendor-rolesCollection": {
         "type": "object",
@@ -16879,7 +21334,7 @@
             "type": "string"
           },
           "currency": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/currency"
           }
         },
         "x-ns-sublistkey": {
@@ -18744,7 +23199,7 @@
             "$ref": "#/components/schemas/invoice-expCostCollection"
           },
           "currency": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/currency"
           },
           "custbody_ff_sc_po_validat_rule_applied": {
             "$ref": "#/components/schemas/nsResource"
@@ -18775,7 +23230,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custbody_zc_ap_bank_acct_gl_acct": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "custbody_4601_doc_ref_id": {
             "$ref": "#/components/schemas/nsResource"
@@ -18863,7 +23318,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "terms": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/term"
           },
           "custbody_vl_linked_transaction": {
             "$ref": "#/components/schemas/nsResource"
@@ -18911,7 +23366,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "account": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "cseg_paactivitycode": {
             "$ref": "#/components/schemas/nsResource"
@@ -18971,7 +23426,231 @@
             "$ref": "#/components/schemas/invoice-billingAddress"
           }
         },
-        "x-ns-filterable": []
+        "x-ns-filterable": [
+          "custbody_vl_req_your_name",
+          "custbody_bb1_vl_rejection_reason",
+          "custbody_terms_dry_riser_maintenance",
+          "custbody_bb1_sc_nodates",
+          "cseg_accreditations",
+          "startDate",
+          "custbody_nondeductible_ref_tran",
+          "custbody_terms_lighting_maintenance",
+          "custbody_bb1_quote_released",
+          "custbody_vl_payment_certificate",
+          "custbody_terms_active_payment_install",
+          "custbody_terms_maintenance_assumptions",
+          "custbody_ph4185_bstyle",
+          "custbody_ph4014_wtax_applied",
+          "custbody_bb1_building",
+          "custbody_4601_pymnt_ref_id",
+          "opportunity",
+          "custbody_nx_case",
+          "custbody_terms_provisional_costs",
+          "custbody_vl_req_urgency_tier",
+          "custbody_4601_total_amt",
+          "custbody_terms_payment_for_works",
+          "postingPeriod",
+          "custbody_cs_ventro_estimator",
+          "custbody_ph4014_wtax_wamt",
+          "custbody_terms_compartment_install",
+          "custbody_link_lsa",
+          "asOfDate",
+          "createdDate",
+          "custbody_terms_painting_and_decorating",
+          "custbody_nx_customer_signature",
+          "custbody_ph4014_wtax_code",
+          "custbodybillreferencenumber",
+          "custbody_msl_salesrep",
+          "custbody_terms_payment_healthchecks",
+          "custbody_bb1_hubspot_record_id",
+          "custbody_adjustment_journal",
+          "custbody_vl_scheduled_auto_approval",
+          "custbody_client_project_manager_email",
+          "currency",
+          "custbody_terms_extinguish_maintenance",
+          "email",
+          "custbody_link_name_lsa",
+          "custbody_bb1_vl_action_reject_field",
+          "custbody_country_of_origin",
+          "custbody_terms_fd_hc_assumptions",
+          "custbody_unique_asset_code",
+          "custbody_vl_variation_labour_budget",
+          "custbody_zc_3wm_translations",
+          "custbody_vl_variation_prelim_budget",
+          "prevDate",
+          "custbody_itr_nexus",
+          "partner",
+          "custbody_terms_damper_maintenance",
+          "custbody_report_timestamp",
+          "custbody_bb1_cc_note",
+          "custbody_msl_estimated_weeks",
+          "custbody_vl_req_contact_name",
+          "custbody_terms_sprinkler_maintenance",
+          "custbody_regime_code_of_supply",
+          "custbody_ff_sc_bank_details_sec",
+          "custbody_ph4014_wtax_bamt",
+          "custbody_erpff_p2p_auto_send_document",
+          "externalId",
+          "custbody_wtax_base_url",
+          "toBePrinted",
+          "custbody_vl_variation_material_budget",
+          "custbody_terms_contingency",
+          "custbody_projectbuyer",
+          "custbody_regime_code",
+          "custbodycus_ven_sales_order_department",
+          "custbody_test_terms_pdf",
+          "toBeEmailed",
+          "custbody_msl_commission_generated",
+          "custbody_bb1_link_to_sharepoint",
+          "discountDate",
+          "custbody_vl_req_date_required",
+          "custbody_ff_sc_trans_ita_apy_code",
+          "custbody_bb1_vl_project_owner",
+          "fob",
+          "custbody_subcontractor",
+          "custbody_ph4014_wtax_reversal_flag",
+          "shipMethod",
+          "custbody_vl_temp",
+          "custbodyinvoiceonhold",
+          "custbody_ff_sc_field_block_mapping",
+          "custbody_ff_sc_po_validat_rule_applied",
+          "custbody_vl_invoice_group_no",
+          "custbody_total_quote_gp_percent",
+          "exchangeRate",
+          "custbody_itr_doc_number",
+          "custbody_vl_req_contact_number",
+          "custbody_zc_ai_field_application_data",
+          "custbody_bb1_custom_address",
+          "custbody_vl_new_invoice_number",
+          "custbodypmscheduler",
+          "custbody_requestor_header",
+          "custbody_bb1_legacytrannumber",
+          "custbody_payment_type",
+          "custbody_transaction_region",
+          "custbody_nondeductible_ref_genjrnl",
+          "custbody_bb1_suiteprojects_project",
+          "toBeFaxed",
+          "custbody_bb1_release_check",
+          "custbody_bb1_cr_supportingfile",
+          "custbody_vl_original_site_mgmt_budget",
+          "custbodyprojectqsheader",
+          "custbody_ff_sc_e_inv_pdf",
+          "custbody_bb1_save_as_draft",
+          "custbody_terms_hc_assumptions",
+          "custbody_vl_original_labour_budget",
+          "custbody_vl_next_approver",
+          "shipDate",
+          "custbody_vl_bill_pymt_je_cr_data",
+          "custbody_terms_accreditations",
+          "custbody_bb1_vl_action_approve_field",
+          "custbody_ff_sc_clickdata",
+          "message",
+          "custbody_terms_compartment_maintenance",
+          "custbody_terms_suppresion_maintenance",
+          "custbody_vl_building_list",
+          "custbody_4601_doc_ref_id",
+          "custbody_bb1_sc_liquid_damages",
+          "dueDate",
+          "custbody_notc",
+          "custbody_ff_sc_bank_details",
+          "custbody_bb1_vl_current_approval",
+          "custbody_erpff_p2p_basware_send_note",
+          "custbody_intercompany_review",
+          "custbody_terms_fire_alarm_install",
+          "custbody_vl_linked_transaction",
+          "custbody_terms_compartmentation_hc",
+          "tranDate",
+          "memo",
+          "custbody_nx_projecttask",
+          "custbody_eff_nsp2p_buyerref",
+          "custbody_ordertype",
+          "custbody_vl_original_material_budget",
+          "terms",
+          "custbody_date_of_taxable_supply",
+          "id",
+          "custbody_nexus_notc",
+          "custbody_bb1_dispute_reason",
+          "custbody_suppliessupplier",
+          "custbody_vl_variation_site_manage_budg",
+          "custbody_vl_orig_preliminaries_budget",
+          "endDate",
+          "custbody_eff_nsp2p_paymentref",
+          "custbody_cash_register",
+          "custbody_bb1_custom_notes",
+          "custbody_terms_fd_healthcheck",
+          "custbody_billingcontact",
+          "custbody_bb1_created_by",
+          "custbody_cs_linked_project",
+          "custbody_subconnotes",
+          "custbody_update",
+          "estGrossProfitPercent",
+          "custbody_zc_3wm_acceptance_reason",
+          "custbody_msl_qs_invoice",
+          "tranIsVsoeBundle",
+          "custbody_application_date",
+          "custbody_nx_customer",
+          "custbody_zc_ap_pay_from",
+          "custbody_terms_compartment_support",
+          "custbody_ph4014_wtax_rate",
+          "custbody_nx_idempotency_key",
+          "custbody_tc_relatedtask",
+          "custbody_vl_req_request_type",
+          "custbody_eff_nsp2p_serialnumbers",
+          "custbody_zc_ap_pay_to",
+          "custbody_bb1_credit_reason",
+          "custbody_terms_works_assumptions",
+          "custbody_4601_transactions",
+          "custbody_terms_hc_accreditations",
+          "custbody_terms_smoke_vent_maintenance",
+          "custbody_terms_fd_installation",
+          "custbody_erpff_p2p_document_sent",
+          "custbody_is_a_variation",
+          "bulkProcSubmission",
+          "entity",
+          "custbody_estimated_gp",
+          "custbody_nx_task",
+          "custbody_eff_nsp2p_supplier_notes",
+          "forInvoiceGrouping",
+          "custbody_erpff_p2p_customer_reference",
+          "custbody_4110_customregnum",
+          "custbodyinterlegacytrannumber",
+          "custbody_vl_group_invoice",
+          "custbody_nx_asset",
+          "custbody_ff_sc_deliverydate",
+          "custbody_4601_wtax_withheld",
+          "custbody_ff_sc_trans_ita_pay_term",
+          "custbody_bb1_vendor_phone",
+          "custbody_delivery_terms",
+          "job",
+          "custbody_bb1_sc_completiondate",
+          "otherRefNum",
+          "custbody_nx_case_type",
+          "custbody_project_framework",
+          "custbody_mode_of_transport",
+          "custbody_terms_fire_alarm_maintenance",
+          "custbody_4601_appliesto",
+          "custbody_alternate_site",
+          "custbody_msl_site_address_hidden",
+          "custbody_nondeductible_processed",
+          "custbody_ph4014_wtax_cpay_pacct",
+          "custbody_bb1_market",
+          "custbody_date_lsa",
+          "tranId",
+          "custbody_counterparty_vat",
+          "custbody_refno_originvoice",
+          "custbody_bb1_credit_requestor",
+          "lastModifiedDate",
+          "cseg_paactivitycode",
+          "custbody_eff_nsp2p_xml2nstrans",
+          "custbody_msl_site_address",
+          "custbody_ff_sc_b2pmodel",
+          "custbody_bb1_sc_startdate",
+          "custbody_bb1_current_cr_approver",
+          "custbody_vl_req_extra_comments",
+          "groupedTo",
+          "custbody_bb1_vl_project",
+          "custbody_bb1_credit_created"
+        ]
       },
       "vendor-ratesCollection": {
         "type": "object",
@@ -19537,7 +24216,7 @@
             "type": "string"
           },
           "custcol_nondeductible_account": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "custcol_nx_projecttask": {
             "$ref": "#/components/schemas/nsResource"
@@ -19663,7 +24342,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "account": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "category": {
             "$ref": "#/components/schemas/nsResource"
@@ -19794,7 +24473,7 @@
             "type": "string"
           },
           "currency": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/currency"
           },
           "level": {
             "$ref": "#/components/schemas/nsResource"
@@ -19821,6 +24500,50 @@
           }
         },
         "x-ns-filterable": []
+      },
+      "taxTypeCollection": {
+        "type": "object",
+        "properties": {
+          "totalResults": {
+            "title": "Total Results",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "items": {
+            "title": "Items",
+            "type": "array",
+            "description": "An array field that represents a collection of elements, for example, sublist lines, multiselect items, or search results.",
+            "items": {
+              "$ref": "#/components/schemas/taxType"
+            }
+          },
+          "links": {
+            "title": "Links",
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/nsLink"
+            }
+          },
+          "count": {
+            "title": "Count",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "hasMore": {
+            "title": "Has More Results",
+            "type": "boolean",
+            "readOnly": true
+          },
+          "offset": {
+            "title": "Query Offset",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          }
+        }
       },
       "invoice-itemCost-inventoryDetail-inventoryAssignmentElement": {
         "type": "object",
@@ -20346,6 +25069,48 @@
           }
         },
         "x-ns-filterable": []
+      },
+      "account-accountContextSearchCollection": {
+        "type": "object",
+        "properties": {
+          "links": {
+            "title": "Links",
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/nsLink"
+            }
+          },
+          "totalResults": {
+            "title": "Total Results",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "count": {
+            "title": "Count",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "hasMore": {
+            "title": "Has More Results",
+            "type": "boolean",
+            "readOnly": true
+          },
+          "offset": {
+            "title": "Query Offset",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/account-accountContextSearchElement"
+            }
+          }
+        }
       },
       "invoice-itemElement": {
         "type": "object",
@@ -21119,7 +25884,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "account": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "custcol_sales_consultant_line": {
             "$ref": "#/components/schemas/nsResource"
@@ -21170,7 +25935,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custcol_nondeductible_account": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "custcol_statistical_procedure_sale": {
             "$ref": "#/components/schemas/nsResource"
@@ -22885,6 +27650,13 @@
             "nullable": true,
             "x-ns-custom-field": true
           },
+          "aging": {
+            "title": "Current",
+            "type": "number",
+            "description": "The overdue A/R balance is shown here with the balance totals for each aging period.",
+            "format": "double",
+            "nullable": true
+          },
           "shipComplete": {
             "title": "Ship Complete",
             "type": "boolean",
@@ -23191,6 +27963,34 @@
               }
             }
           },
+          "aging2": {
+            "title": "31-60 Days",
+            "type": "number",
+            "description": "The overdue A/R balance is shown here with the balance totals for each aging period.",
+            "format": "double",
+            "nullable": true
+          },
+          "aging3": {
+            "title": "61-90 Days",
+            "type": "number",
+            "description": "The overdue A/R balance is shown here with the balance totals for each aging period.",
+            "format": "double",
+            "nullable": true
+          },
+          "aging1": {
+            "title": "1-30 Days",
+            "type": "number",
+            "description": "The overdue A/R balance is shown here with the balance totals for each aging period.",
+            "format": "double",
+            "nullable": true
+          },
+          "aging4": {
+            "title": "Over 90 Days",
+            "type": "number",
+            "description": "The overdue A/R balance is shown here with the balance totals for each aging period.",
+            "format": "double",
+            "nullable": true
+          },
           "comments": {
             "title": "Comments",
             "type": "string",
@@ -23305,13 +28105,13 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "terms": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/term"
           },
           "custentity_4601_defaultwitaxcode": {
             "$ref": "#/components/schemas/nsResource"
           },
           "defaultBankAccount": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "partner": {
             "$ref": "#/components/schemas/nsResource"
@@ -23320,7 +28120,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "receivablesAccount": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "salesReadiness": {
             "$ref": "#/components/schemas/nsResource"
@@ -23350,7 +28150,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "openingBalanceAccount": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "leadSource": {
             "$ref": "#/components/schemas/nsResource"
@@ -23392,7 +28192,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "drAccount": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/account"
           },
           "topLevelParent": {
             "$ref": "#/components/schemas/customer"
@@ -23400,8 +28200,11 @@
           "representingSubsidiary": {
             "$ref": "#/components/schemas/nsResource"
           },
+          "contactList": {
+            "$ref": "#/components/schemas/nsResourceCollection"
+          },
           "currency": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/currency"
           },
           "parent": {
             "$ref": "#/components/schemas/customer"
@@ -23419,7 +28222,134 @@
             "$ref": "#/components/schemas/customer-addressBookCollection"
           }
         },
-        "x-ns-filterable": []
+        "x-ns-filterable": [
+          "custentity_dic",
+          "parent",
+          "custentity_erpff_p2p_party_endpoint_id",
+          "custentity_nxc_cust_signature",
+          "emailTransactions",
+          "drAccount",
+          "startDate",
+          "lastSaleDate",
+          "custentity_payment_run_details",
+          "thirdPartyCountry",
+          "topLevelParent",
+          "custentity_vl_task_resched_limit",
+          "groupInvoices",
+          "terms",
+          "buyingReason",
+          "custentity_todeleteproject",
+          "printOnCheckAs",
+          "id",
+          "fax",
+          "custentity1",
+          "custentity_link_lsa",
+          "custentity_erpff_p2p_party_endp_sch_id",
+          "custentity_vl_emergency_contact_person",
+          "thirdPartyZipCode",
+          "custentity_erpff_p2p_party_endp_scheme",
+          "custentity_ff_sc_entity_ita_pay_term",
+          "dateCreated",
+          "buyingTimeFrame",
+          "billingTransactionForm",
+          "billingRateCard",
+          "alcoholRecipientType",
+          "lastName",
+          "endDate",
+          "phone",
+          "custentity_bb1_hubspot_sync",
+          "companyName",
+          "custentity_kl_fsm_mobile_test_customer",
+          "custentity_erpff_p2p_party_endp_op_id",
+          "custentity_bb1_market",
+          "salesReadiness",
+          "sourceWebSite",
+          "creditHoldOverride",
+          "receivablesAccount",
+          "isPerson",
+          "custentity_erpff_p2p_auto_send_document",
+          "currency",
+          "email",
+          "custentity_tax_contact_last",
+          "salesRep",
+          "custentity_bb1_cc_note",
+          "billingSchedule",
+          "custentity_ff_sc_bank_details_sec",
+          "lastOrderDate",
+          "url",
+          "firstSaleDate",
+          "partner",
+          "custentity_vl_site_allocation",
+          "custentity_ico",
+          "shipComplete",
+          "custentity_tax_contact_middle",
+          "custentity_date_lsa",
+          "custentity_bb1_cc_lasttype",
+          "thirdPartyCarrier",
+          "custentity_4601_defaultwitaxcode",
+          "shippingItem",
+          "externalId",
+          "custentity_erpff_p2p_basw_tax_id",
+          "entityId",
+          "emailPreference",
+          "defaultBankAccount",
+          "custentity_bb1_missingrecord",
+          "numberFormat",
+          "custentity_tax_contact",
+          "isAutogeneratedRepresentingEntity",
+          "isBudgetApproved",
+          "contact",
+          "mobilePhone",
+          "custentity_cusstatementname",
+          "priceLevel",
+          "searchStage",
+          "altPhone",
+          "firstOrderDate",
+          "faxTransactions",
+          "resaleNumber",
+          "custentity_nxc_customer_account",
+          "altEmail",
+          "defaultOrderPriority",
+          "custentity_erpff_p2p_basw_tax_scheme",
+          "custentity_tax_contact_first",
+          "representingSubsidiary",
+          "leadSource",
+          "salutation",
+          "custentity_ff_sc_bank_details",
+          "isInactive",
+          "firstName",
+          "thirdPartyAcct",
+          "custentity_bb1_cc_lastemail",
+          "homePhone",
+          "contactList",
+          "estimatedBudget",
+          "custentity_bb1_last_statement",
+          "title",
+          "entityStatus",
+          "defaultShippingAddress",
+          "giveAccess",
+          "negativeNumberFormat",
+          "billingTransactionType",
+          "shippingCarrier",
+          "custentity_ph4185_bstyle",
+          "comments",
+          "accountNumber",
+          "reminderDays",
+          "lastModifiedDate",
+          "custentity_bb1_customer_approved",
+          "middleName",
+          "printTransactions",
+          "custentity_bb1_dispute_reason",
+          "custentity_link_name_lsa",
+          "custentity_bb1_credit_control_checked",
+          "custentity_bb1_cc_pause",
+          "assignedWebSite",
+          "custentity_erpff_p2p_basw_tax_scheme_id",
+          "creditLimit",
+          "category",
+          "prefCcProcessor",
+          "territory"
+        ]
       },
       "vendorBill-accountingBookDetailCollection": {
         "type": "object",
@@ -23699,7 +28629,7 @@
             "type": "string"
           },
           "currency": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/currency"
           }
         },
         "x-ns-sublistkey": {

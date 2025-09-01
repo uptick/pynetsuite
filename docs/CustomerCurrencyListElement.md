@@ -10,11 +10,11 @@ Name | Type | Description | Notes
 **balance** | **float** |  | [optional] 
 **deposit_balance** | **float** |  | [optional] 
 **unbilled_orders** | **float** |  | [optional] 
-**symbol_placement** | [**CustomerCurrencyListElementSymbolPlacement**](CustomerCurrencyListElementSymbolPlacement.md) |  | [optional] 
+**symbol_placement** | [**CurrencySymbolPlacement**](CurrencySymbolPlacement.md) |  | [optional] 
 **overdue_balance** | **float** |  | [optional] 
 **display_symbol** | **str** |  | [optional] 
 **ref_name** | **str** |  | [optional] 
-**currency** | [**NsResource**](NsResource.md) |  | [optional] 
+**currency** | [**Currency**](Currency.md) |  | [optional] 
 
 ## Example
 
