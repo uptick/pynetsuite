@@ -63,6 +63,15 @@
             }
           },
           {
+            "name": "fields",
+            "in": "query",
+            "description": "The fields to select.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "The limit used to specify the number of results on a single page.",
@@ -262,6 +271,15 @@
             "name": "q",
             "in": "query",
             "description": "The search query that is used to filter results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "The fields to select.",
             "required": false,
             "schema": {
               "type": "string"
@@ -473,6 +491,15 @@
             }
           },
           {
+            "name": "fields",
+            "in": "query",
+            "description": "The fields to select.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "The limit used to specify the number of results on a single page.",
@@ -672,6 +699,15 @@
             "name": "q",
             "in": "query",
             "description": "The search query that is used to filter results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "The fields to select.",
             "required": false,
             "schema": {
               "type": "string"
@@ -883,6 +919,15 @@
             }
           },
           {
+            "name": "fields",
+            "in": "query",
+            "description": "The fields to select.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "The limit used to specify the number of results on a single page.",
@@ -1082,6 +1127,15 @@
             "name": "q",
             "in": "query",
             "description": "The search query that is used to filter results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "The fields to select.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1293,6 +1347,15 @@
             }
           },
           {
+            "name": "fields",
+            "in": "query",
+            "description": "The fields to select.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "The limit used to specify the number of results on a single page.",
@@ -1492,6 +1555,15 @@
             "name": "q",
             "in": "query",
             "description": "The search query that is used to filter results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "The fields to select.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1703,6 +1775,15 @@
             }
           },
           {
+            "name": "fields",
+            "in": "query",
+            "description": "The fields to select.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "The limit used to specify the number of results on a single page.",
@@ -1902,6 +1983,15 @@
             "name": "q",
             "in": "query",
             "description": "The search query that is used to filter results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "The fields to select.",
             "required": false,
             "schema": {
               "type": "string"

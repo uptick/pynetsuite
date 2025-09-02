@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **sales_tax_item_get**
-> SalesTaxItemCollection sales_tax_item_get(prefer=prefer, x_net_suite_idempotency_key=x_net_suite_idempotency_key, q=q, limit=limit, offset=offset)
+> SalesTaxItemCollection sales_tax_item_get(prefer=prefer, x_net_suite_idempotency_key=x_net_suite_idempotency_key, q=q, fields=fields, limit=limit, offset=offset)
 
 Get list of records.
 
@@ -51,12 +51,13 @@ with pynetsuite.ApiClient(configuration) as api_client:
     prefer = 'prefer_example' # str | The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response. (optional)
     x_net_suite_idempotency_key = 'x_net_suite_idempotency_key_example' # str | A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored. (optional)
     q = 'q_example' # str | The search query that is used to filter results. (optional)
+    fields = 'fields_example' # str | The fields to select. (optional)
     limit = 1000 # int | The limit used to specify the number of results on a single page. (optional) (default to 1000)
     offset = 0 # int | The offset used for selecting a specific page of results. (optional) (default to 0)
 
     try:
         # Get list of records.
-        api_response = api_instance.sales_tax_item_get(prefer=prefer, x_net_suite_idempotency_key=x_net_suite_idempotency_key, q=q, limit=limit, offset=offset)
+        api_response = api_instance.sales_tax_item_get(prefer=prefer, x_net_suite_idempotency_key=x_net_suite_idempotency_key, q=q, fields=fields, limit=limit, offset=offset)
         print("The response of SalesTaxItemApi->sales_tax_item_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -73,6 +74,7 @@ Name | Type | Description  | Notes
  **prefer** | **str**| The server behavior requested by the client. Use &#39;respond-async&#39; to execute the request asynchronously. If the request is executed asynchronously, &#39;Preference-applied: respond-async&#39; is returned in the response. | [optional] 
  **x_net_suite_idempotency_key** | **str**| A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored. | [optional] 
  **q** | **str**| The search query that is used to filter results. | [optional] 
+ **fields** | **str**| The fields to select. | [optional] 
  **limit** | **int**| The limit used to specify the number of results on a single page. | [optional] [default to 1000]
  **offset** | **int**| The offset used for selecting a specific page of results. | [optional] [default to 0]
 

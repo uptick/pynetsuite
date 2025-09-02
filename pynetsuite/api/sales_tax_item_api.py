@@ -47,6 +47,7 @@ class SalesTaxItemApi:
         prefer: Annotated[Optional[StrictStr], Field(description="The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.")] = None,
         x_net_suite_idempotency_key: Annotated[Optional[StrictStr], Field(description="A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.")] = None,
         q: Annotated[Optional[StrictStr], Field(description="The search query that is used to filter results.")] = None,
+        fields: Annotated[Optional[StrictStr], Field(description="The fields to select.")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="The limit used to specify the number of results on a single page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The offset used for selecting a specific page of results.")] = None,
         _request_timeout: Union[
@@ -71,6 +72,8 @@ class SalesTaxItemApi:
         :type x_net_suite_idempotency_key: str
         :param q: The search query that is used to filter results.
         :type q: str
+        :param fields: The fields to select.
+        :type fields: str
         :param limit: The limit used to specify the number of results on a single page.
         :type limit: int
         :param offset: The offset used for selecting a specific page of results.
@@ -101,6 +104,7 @@ class SalesTaxItemApi:
             prefer=prefer,
             x_net_suite_idempotency_key=x_net_suite_idempotency_key,
             q=q,
+            fields=fields,
             limit=limit,
             offset=offset,
             _request_auth=_request_auth,
@@ -129,6 +133,7 @@ class SalesTaxItemApi:
         prefer: Annotated[Optional[StrictStr], Field(description="The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.")] = None,
         x_net_suite_idempotency_key: Annotated[Optional[StrictStr], Field(description="A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.")] = None,
         q: Annotated[Optional[StrictStr], Field(description="The search query that is used to filter results.")] = None,
+        fields: Annotated[Optional[StrictStr], Field(description="The fields to select.")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="The limit used to specify the number of results on a single page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The offset used for selecting a specific page of results.")] = None,
         _request_timeout: Union[
@@ -153,6 +158,8 @@ class SalesTaxItemApi:
         :type x_net_suite_idempotency_key: str
         :param q: The search query that is used to filter results.
         :type q: str
+        :param fields: The fields to select.
+        :type fields: str
         :param limit: The limit used to specify the number of results on a single page.
         :type limit: int
         :param offset: The offset used for selecting a specific page of results.
@@ -183,6 +190,7 @@ class SalesTaxItemApi:
             prefer=prefer,
             x_net_suite_idempotency_key=x_net_suite_idempotency_key,
             q=q,
+            fields=fields,
             limit=limit,
             offset=offset,
             _request_auth=_request_auth,
@@ -211,6 +219,7 @@ class SalesTaxItemApi:
         prefer: Annotated[Optional[StrictStr], Field(description="The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.")] = None,
         x_net_suite_idempotency_key: Annotated[Optional[StrictStr], Field(description="A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.")] = None,
         q: Annotated[Optional[StrictStr], Field(description="The search query that is used to filter results.")] = None,
+        fields: Annotated[Optional[StrictStr], Field(description="The fields to select.")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="The limit used to specify the number of results on a single page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The offset used for selecting a specific page of results.")] = None,
         _request_timeout: Union[
@@ -235,6 +244,8 @@ class SalesTaxItemApi:
         :type x_net_suite_idempotency_key: str
         :param q: The search query that is used to filter results.
         :type q: str
+        :param fields: The fields to select.
+        :type fields: str
         :param limit: The limit used to specify the number of results on a single page.
         :type limit: int
         :param offset: The offset used for selecting a specific page of results.
@@ -265,6 +276,7 @@ class SalesTaxItemApi:
             prefer=prefer,
             x_net_suite_idempotency_key=x_net_suite_idempotency_key,
             q=q,
+            fields=fields,
             limit=limit,
             offset=offset,
             _request_auth=_request_auth,
@@ -288,6 +300,7 @@ class SalesTaxItemApi:
         prefer,
         x_net_suite_idempotency_key,
         q,
+        fields,
         limit,
         offset,
         _request_auth,
@@ -315,6 +328,10 @@ class SalesTaxItemApi:
         if q is not None:
             
             _query_params.append(('q', q))
+            
+        if fields is not None:
+            
+            _query_params.append(('fields', fields))
             
         if limit is not None:
             
