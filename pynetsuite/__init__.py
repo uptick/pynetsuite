@@ -5,7 +5,7 @@
 """
     NetSuite REST Record API
 
-    NetSuite REST Record API generated 2025-09-01 at 22:32:31 UTC.
+    NetSuite REST Record API generated 2025-09-02 at 01:07:42 UTC.
 
     The version of the OpenAPI document: v1
     Contact: info@netsuite.com
@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.1.0"
+__version__ = "1.0.0"
 
 # Define package exports
 __all__ = [
@@ -24,6 +24,7 @@ __all__ = [
     "CurrencyApi",
     "CustomerApi",
     "InvoiceApi",
+    "SalesTaxItemApi",
     "TaxTypeApi",
     "TermApi",
     "VendorApi",
@@ -106,6 +107,7 @@ __all__ = [
     "InvoiceItemCollection",
     "InvoiceItemCostCollection",
     "InvoiceItemCostElement",
+    "InvoiceItemCostElementItem",
     "InvoiceItemCostInventoryDetail",
     "InvoiceItemCostInventoryDetailInventoryAssignmentCollection",
     "InvoiceItemCostInventoryDetailInventoryAssignmentElement",
@@ -123,6 +125,9 @@ __all__ = [
     "NsLink",
     "NsResource",
     "NsResourceCollection",
+    "SalesTaxItem",
+    "SalesTaxItemCollection",
+    "SalesTaxItemCustomForm",
     "TaxType",
     "TaxTypeCollection",
     "TaxTypeCountry",
@@ -170,6 +175,7 @@ from pynetsuite.api.credit_memo_api import CreditMemoApi as CreditMemoApi
 from pynetsuite.api.currency_api import CurrencyApi as CurrencyApi
 from pynetsuite.api.customer_api import CustomerApi as CustomerApi
 from pynetsuite.api.invoice_api import InvoiceApi as InvoiceApi
+from pynetsuite.api.sales_tax_item_api import SalesTaxItemApi as SalesTaxItemApi
 from pynetsuite.api.tax_type_api import TaxTypeApi as TaxTypeApi
 from pynetsuite.api.term_api import TermApi as TermApi
 from pynetsuite.api.vendor_api import VendorApi as VendorApi
@@ -256,6 +262,7 @@ from pynetsuite.models.invoice_exp_cost_element_custcol_zc_item_type import Invo
 from pynetsuite.models.invoice_item_collection import InvoiceItemCollection as InvoiceItemCollection
 from pynetsuite.models.invoice_item_cost_collection import InvoiceItemCostCollection as InvoiceItemCostCollection
 from pynetsuite.models.invoice_item_cost_element import InvoiceItemCostElement as InvoiceItemCostElement
+from pynetsuite.models.invoice_item_cost_element_item import InvoiceItemCostElementItem as InvoiceItemCostElementItem
 from pynetsuite.models.invoice_item_cost_inventory_detail import InvoiceItemCostInventoryDetail as InvoiceItemCostInventoryDetail
 from pynetsuite.models.invoice_item_cost_inventory_detail_inventory_assignment_collection import InvoiceItemCostInventoryDetailInventoryAssignmentCollection as InvoiceItemCostInventoryDetailInventoryAssignmentCollection
 from pynetsuite.models.invoice_item_cost_inventory_detail_inventory_assignment_element import InvoiceItemCostInventoryDetailInventoryAssignmentElement as InvoiceItemCostInventoryDetailInventoryAssignmentElement
@@ -273,6 +280,9 @@ from pynetsuite.models.ns_error_o_error_details_inner import NsErrorOErrorDetail
 from pynetsuite.models.ns_link import NsLink as NsLink
 from pynetsuite.models.ns_resource import NsResource as NsResource
 from pynetsuite.models.ns_resource_collection import NsResourceCollection as NsResourceCollection
+from pynetsuite.models.sales_tax_item import SalesTaxItem as SalesTaxItem
+from pynetsuite.models.sales_tax_item_collection import SalesTaxItemCollection as SalesTaxItemCollection
+from pynetsuite.models.sales_tax_item_custom_form import SalesTaxItemCustomForm as SalesTaxItemCustomForm
 from pynetsuite.models.tax_type import TaxType as TaxType
 from pynetsuite.models.tax_type_collection import TaxTypeCollection as TaxTypeCollection
 from pynetsuite.models.tax_type_country import TaxTypeCountry as TaxTypeCountry

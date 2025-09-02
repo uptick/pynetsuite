@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "NetSuite REST Record API",
-    "description": "NetSuite REST Record API generated 2025-09-01 at 22:32:31 UTC.",
+    "description": "NetSuite REST Record API generated 2025-09-02 at 01:07:42 UTC.",
     "termsOfService": "http://www.netsuite.com/portal/resource/terms-of-service.shtml",
     "contact": {
       "name": "Oracle NetSuite",
@@ -1012,6 +1012,211 @@
             "application/vnd.oracle.resource+json; type=singular": {
               "schema": {
                 "$ref": "#/components/schemas/currency"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Inserted record.",
+            "headers": {
+              "X-NetSuite-PropertyValidation": {
+                "description": "The description of a property validation failure.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/salesTaxItem": {
+      "get": {
+        "tags": [
+          "SalesTaxItem"
+        ],
+        "summary": "Get list of records.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The search query that is used to filter results.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The limit used to specify the number of results on a single page.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1000
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The offset used for selecting a specific page of results.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=collection": {
+                "schema": {
+                  "$ref": "#/components/schemas/salesTaxItemCollection"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SalesTaxItem"
+        ],
+        "summary": "Insert record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "replace",
+            "in": "query",
+            "description": "The names of sublists on this record. All sublist lines will be replaced with lines specified in the request. The names are delimited by comma.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple sublists": {
+                "value": "sublist1,subrecord.sublist2"
+              },
+              "sublist on subrecord": {
+                "value": "subrecord.sublist"
+              },
+              "single sublist": {
+                "value": "sublist"
+              }
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyNameValidation",
+            "in": "header",
+            "description": "Sets the strictness of property name validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Warning"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyValueValidation",
+            "in": "header",
+            "description": "Sets the strictness of property value validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Error"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/vnd.oracle.resource+json; type=singular": {
+              "schema": {
+                "$ref": "#/components/schemas/salesTaxItem"
               }
             }
           },
@@ -4057,6 +4262,451 @@
             "application/vnd.oracle.resource+json; type=singular": {
               "schema": {
                 "$ref": "#/components/schemas/currency"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Updated record.",
+            "headers": {
+              "X-NetSuite-PropertyValidation": {
+                "description": "The description of a property validation failure.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/salesTaxItem/{id}": {
+      "get": {
+        "tags": [
+          "SalesTaxItem"
+        ],
+        "summary": "Get record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Internal identifier.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "expandSubResources",
+            "in": "query",
+            "description": "Set to 'true' to automatically expand all sublists, sublist lines, and subrecords on this record.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "simpleEnumFormat",
+            "in": "query",
+            "description": "Set to true to return enumeration values in a format that only shows the internal ID value.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "The names of the fields and sublists on the record. Only the selected fields and sublists will be returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple fields": {
+                "value": "field1,field2"
+              },
+              "single field": {
+                "value": "field"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved record.",
+            "headers": {
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/vnd.oracle.resource+json; type=singular": {
+                "schema": {
+                  "$ref": "#/components/schemas/salesTaxItem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "SalesTaxItem"
+        ],
+        "summary": "Insert or update record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "External identifier.",
+            "required": true,
+            "schema": {
+              "pattern": "eid:(.+)",
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyNameValidation",
+            "in": "header",
+            "description": "Sets the strictness of property name validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Warning"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyValueValidation",
+            "in": "header",
+            "description": "Sets the strictness of property value validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Error"
+            }
+          },
+          {
+            "name": "replace",
+            "in": "query",
+            "description": "The names of sublists on this record. All sublist lines will be replaced with lines specified in the request. The names are delimited by comma.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple sublists": {
+                "value": "sublist1,subrecord.sublist2"
+              },
+              "sublist on subrecord": {
+                "value": "subrecord.sublist"
+              },
+              "single sublist": {
+                "value": "sublist"
+              }
+            }
+          },
+          {
+            "name": "replaceSelectedFields",
+            "in": "query",
+            "description": "If set to 'true', all fields that should be deleted in the update request, including body fields, must be included in the 'replace' query parameter.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/vnd.oracle.resource+json; type=singular": {
+              "schema": {
+                "$ref": "#/components/schemas/salesTaxItem"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Upserted record.",
+            "headers": {
+              "X-NetSuite-PropertyValidation": {
+                "description": "The description of a property validation failure.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-NetSuite-Warning": {
+                "description": "Warning messages that occurred during processing.",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "SalesTaxItem"
+        ],
+        "summary": "Remove record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Internal identifier.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Removed record."
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/vnd.oracle.resource+json; type=error": {
+                "schema": {
+                  "$ref": "#/components/schemas/nsError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "SalesTaxItem"
+        ],
+        "summary": "Update record.",
+        "parameters": [
+          {
+            "name": "Prefer",
+            "in": "header",
+            "description": "The server behavior requested by the client. Use 'respond-async' to execute the request asynchronously. If the request is executed asynchronously, 'Preference-applied: respond-async' is returned in the response.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "respond-async"
+              ]
+            }
+          },
+          {
+            "name": "X-NetSuite-Idempotency-Key",
+            "in": "header",
+            "description": "A user-defined unique idempotency key that is applied to every asynchronous requests to ensure that the request is executed only once. Only one request can be executed with every unique idempotency key. Use UUID in string format as defined by RFC 4122. If the request is executed synchronously, this value is ignored.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Internal identifier.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyNameValidation",
+            "in": "header",
+            "description": "Sets the strictness of property name validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Warning"
+            }
+          },
+          {
+            "name": "X-NetSuite-PropertyValueValidation",
+            "in": "header",
+            "description": "Sets the strictness of property value validation.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Error",
+                "Warning",
+                "Ignore"
+              ],
+              "default": "Error"
+            }
+          },
+          {
+            "name": "replace",
+            "in": "query",
+            "description": "The names of sublists on this record. All sublist lines will be replaced with lines specified in the request. The names are delimited by comma.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "multiple sublists": {
+                "value": "sublist1,subrecord.sublist2"
+              },
+              "sublist on subrecord": {
+                "value": "subrecord.sublist"
+              },
+              "single sublist": {
+                "value": "sublist"
+              }
+            }
+          },
+          {
+            "name": "replaceSelectedFields",
+            "in": "query",
+            "description": "If set to 'true', all fields that should be deleted in the update request, including body fields, must be included in the 'replace' query parameter.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body.",
+          "content": {
+            "application/vnd.oracle.resource+json; type=singular": {
+              "schema": {
+                "$ref": "#/components/schemas/salesTaxItem"
               }
             }
           },
@@ -8786,7 +9436,7 @@
             "type": "string"
           },
           "custcol_adjustment_tax_code": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/salesTaxItem"
           },
           "custcol_ff_sc_matching_status": {
             "$ref": "#/components/schemas/nsResource"
@@ -8813,7 +9463,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custcol_vl_tax_code_print": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/salesTaxItem"
           },
           "custcol_statistical_procedure_purc": {
             "$ref": "#/components/schemas/nsResource"
@@ -10112,7 +10762,7 @@
             "$ref": "#/components/schemas/vendor"
           },
           "custcol_vl_tax_code_print": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/salesTaxItem"
           },
           "custcol_ph4014_src_custid": {
             "$ref": "#/components/schemas/customer"
@@ -10199,7 +10849,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custcol_adjustment_tax_code": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/salesTaxItem"
           },
           "custcol_expense_code_of_supply": {
             "$ref": "#/components/schemas/nsResource"
@@ -10211,6 +10861,9 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/nsResource"
+              },
+              {
+                "$ref": "#/components/schemas/salesTaxItem"
               }
             ]
           },
@@ -12260,6 +12913,9 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/nsResource"
+              },
+              {
+                "$ref": "#/components/schemas/salesTaxItem"
               }
             ]
           },
@@ -12625,6 +13281,9 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/nsResource"
+              },
+              {
+                "$ref": "#/components/schemas/salesTaxItem"
               }
             ]
           },
@@ -13333,6 +13992,9 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/nsResource"
+              },
+              {
+                "$ref": "#/components/schemas/salesTaxItem"
               }
             ]
           },
@@ -13346,7 +14008,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custcol_adjustment_tax_code": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/salesTaxItem"
           },
           "custcol_expense_code_of_supply": {
             "$ref": "#/components/schemas/nsResource"
@@ -13370,7 +14032,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custcol_vl_tax_code_print": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/salesTaxItem"
           },
           "custcol_ph4014_src_empid": {
             "$ref": "#/components/schemas/nsResource"
@@ -13654,6 +14316,9 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/nsResource"
+              },
+              {
+                "$ref": "#/components/schemas/salesTaxItem"
               }
             ]
           },
@@ -15100,6 +15765,9 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/nsResource"
+              },
+              {
+                "$ref": "#/components/schemas/salesTaxItem"
               }
             ]
           },
@@ -15134,13 +15802,13 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custcol_adjustment_tax_code": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/salesTaxItem"
           },
           "subsidiary": {
             "$ref": "#/components/schemas/nsResource"
           },
           "custcol_vl_tax_code_print": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/salesTaxItem"
           },
           "custcol_ff_sc_ammr_rule_applied": {
             "$ref": "#/components/schemas/nsResource"
@@ -17726,7 +18394,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custcol_vl_tax_code_print": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/salesTaxItem"
           },
           "custcol_ff_sc_po_id": {
             "$ref": "#/components/schemas/nsResource"
@@ -17771,7 +18439,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custcol_adjustment_tax_code": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/salesTaxItem"
           },
           "custcolprojectqsline": {
             "$ref": "#/components/schemas/nsResource"
@@ -17780,6 +18448,9 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/nsResource"
+              },
+              {
+                "$ref": "#/components/schemas/salesTaxItem"
               }
             ]
           },
@@ -21350,6 +22021,293 @@
         },
         "x-ns-filterable": []
       },
+      "salesTaxItem": {
+        "type": "object",
+        "properties": {
+          "isInactive": {
+            "title": "Inactive",
+            "type": "boolean",
+            "description": "Check this box to inactivate this record. Inactive records do not show on transactions and records for selection in lists."
+          },
+          "custrecord_4110_no_tax_invoice": {
+            "title": "No Tax Invoice",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_non_taxable": {
+            "title": "Non-Taxable",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_for_digital_services": {
+            "title": "Applies to Digital Services",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_reduced_rate": {
+            "title": "Reduced Rate",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "externalId": {
+            "title": "External ID",
+            "type": "string",
+            "nullable": true
+          },
+          "custrecord_4110_partial_credit": {
+            "title": "Partial Tax Credit",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "description": {
+            "title": "Description",
+            "type": "string",
+            "description": "Enter a description for this record.",
+            "nullable": true
+          },
+          "custrecord_4110_outside_customs": {
+            "title": "Outside Customs Territory",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_other_tax_evidence": {
+            "title": "Other Tax Evidence",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_capital_goods": {
+            "title": "Capital Goods",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_non_deductible": {
+            "title": "Non-Deductible",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_no_tax_credit": {
+            "title": "No Tax Credit",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_suspended": {
+            "title": "Suspended",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_reverse_charge_alt": {
+            "title": "Reverse Charge Code",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_duty": {
+            "title": "Import VAT",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_government": {
+            "title": "Government",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "id": {
+            "title": "Internal ID",
+            "type": "string",
+            "nullable": true
+          },
+          "custrecord_4110_non_recoverable": {
+            "title": "Non Recoverable",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_import": {
+            "title": "Import",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_paid": {
+            "title": "Paid",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_triplicate": {
+            "title": "Triplicate Invoice",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_electronic": {
+            "title": "E-invoice",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_purchaser_issued": {
+            "title": "Purchaser Issued Invoice",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_surcharge": {
+            "title": "Surcharge",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_category": {
+            "title": "Category",
+            "type": "string",
+            "nullable": true,
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_non_operation": {
+            "title": "Non-operational Transaction",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_deemed_supply": {
+            "title": "Deemed Supply",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_super_reduced": {
+            "title": "Special Reduced Rate",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_gcc_state": {
+            "title": "GCC Member State",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_is_direct_cost_service": {
+            "title": "Applies to Direct Cost Service Items",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "itemType": {
+            "title": "Item Type",
+            "type": "string",
+            "nullable": true
+          },
+          "custrecord_4110_duplicate": {
+            "title": "Duplicate Invoice",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "customForm": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "title": "Internal identifier",
+                "type": "string",
+                "enum": [
+                  "-22529"
+                ]
+              },
+              "refName": {
+                "title": "Reference Name",
+                "type": "string"
+              }
+            }
+          },
+          "custrecord_4110_special_territory": {
+            "title": "Special Territory",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_cash_register": {
+            "title": "Cash Register",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_non_resident": {
+            "title": "Non Resident",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "custrecord_4110_unknown_tax_credit": {
+            "title": "Unknown Tax Credit",
+            "type": "boolean",
+            "x-ns-custom-field": true
+          },
+          "refName": {
+            "title": "Reference Name",
+            "type": "string"
+          },
+          "rate": {
+            "title": "Rate",
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "links": {
+            "title": "Links",
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/nsLink"
+            }
+          },
+          "custrecord_4110_nondeductible_parent": {
+            "$ref": "#/components/schemas/salesTaxItem"
+          },
+          "taxType": {
+            "$ref": "#/components/schemas/taxType"
+          },
+          "custrecord_deferred_on": {
+            "$ref": "#/components/schemas/nsResource"
+          },
+          "custrecord_4110_nondeductible_account": {
+            "$ref": "#/components/schemas/account"
+          },
+          "custrecord_tax_exemption_reason": {
+            "$ref": "#/components/schemas/nsResource"
+          },
+          "custrecord_4110_parent_alt": {
+            "$ref": "#/components/schemas/salesTaxItem"
+          }
+        },
+        "x-ns-filterable": [
+          "isInactive",
+          "custrecord_deferred_on",
+          "custrecord_4110_no_tax_invoice",
+          "custrecord_4110_non_taxable",
+          "custrecord_for_digital_services",
+          "custrecord_4110_reduced_rate",
+          "custrecord_4110_partial_credit",
+          "description",
+          "custrecord_4110_outside_customs",
+          "custrecord_4110_other_tax_evidence",
+          "taxType",
+          "custrecord_4110_capital_goods",
+          "custrecord_4110_non_deductible",
+          "custrecord_4110_no_tax_credit",
+          "custrecord_4110_suspended",
+          "custrecord_4110_reverse_charge_alt",
+          "custrecord_4110_duty",
+          "custrecord_4110_government",
+          "custrecord_4110_nondeductible_parent",
+          "id",
+          "custrecord_4110_non_recoverable",
+          "custrecord_4110_import",
+          "custrecord_4110_paid",
+          "custrecord_4110_triplicate",
+          "custrecord_4110_electronic",
+          "custrecord_4110_purchaser_issued",
+          "custrecord_tax_exemption_reason",
+          "custrecord_4110_surcharge",
+          "custrecord_4110_category",
+          "custrecord_4110_non_operation",
+          "custrecord_deemed_supply",
+          "custrecord_4110_parent_alt",
+          "custrecord_4110_nondeductible_account",
+          "custrecord_4110_super_reduced",
+          "custrecord_gcc_state",
+          "custrecord_is_direct_cost_service",
+          "custrecord_4110_duplicate",
+          "custrecord_4110_special_territory",
+          "custrecord_4110_cash_register",
+          "custrecord_4110_non_resident",
+          "custrecord_4110_unknown_tax_credit"
+        ]
+      },
       "creditMemo-item-inventoryDetail-inventoryAssignmentElement": {
         "type": "object",
         "properties": {
@@ -24252,7 +25210,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custcol_vl_tax_code_print": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/salesTaxItem"
           },
           "custcol_nx_task": {
             "$ref": "#/components/schemas/nsResource"
@@ -24300,7 +25258,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custcol_adjustment_tax_code": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/salesTaxItem"
           },
           "custcol_vl_linked_transaction": {
             "$ref": "#/components/schemas/nsResource"
@@ -24377,6 +25335,50 @@
         },
         "x-ns-filterable": []
       },
+      "salesTaxItemCollection": {
+        "type": "object",
+        "properties": {
+          "totalResults": {
+            "title": "Total Results",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "items": {
+            "title": "Items",
+            "type": "array",
+            "description": "An array field that represents a collection of elements, for example, sublist lines, multiselect items, or search results.",
+            "items": {
+              "$ref": "#/components/schemas/salesTaxItem"
+            }
+          },
+          "links": {
+            "title": "Links",
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/nsLink"
+            }
+          },
+          "count": {
+            "title": "Count",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "hasMore": {
+            "title": "Has More Results",
+            "type": "boolean",
+            "readOnly": true
+          },
+          "offset": {
+            "title": "Query Offset",
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          }
+        }
+      },
       "vendorBill-item-inventoryDetail": {
         "type": "object",
         "properties": {
@@ -24439,6 +25441,9 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/nsResource"
+              },
+              {
+                "$ref": "#/components/schemas/salesTaxItem"
               }
             ]
           },
@@ -24482,6 +25487,9 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/nsResource"
+              },
+              {
+                "$ref": "#/components/schemas/salesTaxItem"
               }
             ]
           }
@@ -24699,6 +25707,9 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/nsResource"
+              },
+              {
+                "$ref": "#/components/schemas/salesTaxItem"
               }
             ]
           },
@@ -25845,7 +26856,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custcol_vl_tax_code_print": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/salesTaxItem"
           },
           "class": {
             "$ref": "#/components/schemas/nsResource"
@@ -25863,7 +26874,7 @@
             "$ref": "#/components/schemas/nsResource"
           },
           "custcol_adjustment_tax_code": {
-            "$ref": "#/components/schemas/nsResource"
+            "$ref": "#/components/schemas/salesTaxItem"
           },
           "custcolprojectqsline": {
             "$ref": "#/components/schemas/nsResource"
@@ -25944,6 +26955,9 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/nsResource"
+              },
+              {
+                "$ref": "#/components/schemas/salesTaxItem"
               }
             ]
           },

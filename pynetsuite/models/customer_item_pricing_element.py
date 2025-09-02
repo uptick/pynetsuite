@@ -3,7 +3,7 @@
 """
     NetSuite REST Record API
 
-    NetSuite REST Record API generated 2025-09-01 at 22:32:31 UTC.
+    NetSuite REST Record API generated 2025-09-02 at 01:07:42 UTC.
 
     The version of the OpenAPI document: v1
     Contact: info@netsuite.com
@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from pynetsuite.models.currency import Currency
+from pynetsuite.models.invoice_item_cost_element_item import InvoiceItemCostElementItem
 from pynetsuite.models.ns_link import NsLink
 from pynetsuite.models.ns_resource import NsResource
 from typing import Optional, Set
@@ -35,7 +36,7 @@ class CustomerItemPricingElement(BaseModel):
     ref_name: Optional[StrictStr] = Field(default=None, alias="refName")
     currency: Optional[Currency] = None
     level: Optional[NsResource] = None
-    item: Optional[NsResource] = None
+    item: Optional[InvoiceItemCostElementItem] = None
     __properties: ClassVar[List[str]] = ["links", "price", "refName", "currency", "level", "item"]
 
     model_config = ConfigDict(
@@ -117,7 +118,7 @@ class CustomerItemPricingElement(BaseModel):
             "refName": obj.get("refName"),
             "currency": Currency.from_dict(obj["currency"]) if obj.get("currency") is not None else None,
             "level": NsResource.from_dict(obj["level"]) if obj.get("level") is not None else None,
-            "item": NsResource.from_dict(obj["item"]) if obj.get("item") is not None else None
+            "item": InvoiceItemCostElementItem.from_dict(obj["item"]) if obj.get("item") is not None else None
         })
         return _obj
 

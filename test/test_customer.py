@@ -3,7 +3,7 @@
 """
     NetSuite REST Record API
 
-    NetSuite REST Record API generated 2025-09-01 at 22:32:31 UTC.
+    NetSuite REST Record API generated 2025-09-02 at 01:07:42 UTC.
 
     The version of the OpenAPI document: v1
     Contact: info@netsuite.com
@@ -997,11 +997,7 @@ class TestCustomer(unittest.TestCase):
                                 ref_name = '', 
                                 external_id = '', 
                                 links = , ), 
-                            item = pynetsuite.models.ns_resource.nsResource(
-                                id = '', 
-                                ref_name = '', 
-                                external_id = '', 
-                                links = , ), )
+                            item = null, )
                         ], ),
                 custentity_ff_sc_bank_details = pynetsuite.models.ns_resource.nsResource(
                     id = '', 

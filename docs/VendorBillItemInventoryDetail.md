@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **ref_name** | **str** |  | [optional] 
 **links** | [**List[NsLink]**](NsLink.md) |  | [optional] [readonly] 
 **to_location** | [**NsResource**](NsResource.md) |  | [optional] 
-**item** | [**NsResource**](NsResource.md) |  | [optional] 
+**item** | [**InvoiceItemCostElementItem**](InvoiceItemCostElementItem.md) |  | [optional] 
 **inventory_assignment** | [**VendorBillItemInventoryDetailInventoryAssignmentCollection**](VendorBillItemInventoryDetailInventoryAssignmentCollection.md) |  | [optional] 
 **location** | [**NsResource**](NsResource.md) |  | [optional] 
 

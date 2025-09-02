@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **ref_name** | **str** |  | [optional] 
 **currency** | [**Currency**](Currency.md) |  | [optional] 
 **level** | [**NsResource**](NsResource.md) |  | [optional] 
-**item** | [**NsResource**](NsResource.md) |  | [optional] 
+**item** | [**InvoiceItemCostElementItem**](InvoiceItemCostElementItem.md) |  | [optional] 
 
 ## Example
 

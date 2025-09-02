@@ -3,7 +3,7 @@
 """
     NetSuite REST Record API
 
-    NetSuite REST Record API generated 2025-09-01 at 22:32:31 UTC.
+    NetSuite REST Record API generated 2025-09-02 at 01:07:42 UTC.
 
     The version of the OpenAPI document: v1
     Contact: info@netsuite.com
@@ -955,7 +955,7 @@ class TestCreditMemoCollection(unittest.TestCase):
                             custentity_zc_prevailing_rate = , 
                             custentity_payment_type = , 
                             incoterm = , 
-                            custentity_eff_nsp2p_defaultitem = , 
+                            custentity_eff_nsp2p_defaultitem = null, 
                             custentity_ff_sc_ent_diff_pref = , 
                             custentity_vl_entity_type = , ), 
                         custbody_zc_ap_pay_to = , 

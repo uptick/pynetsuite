@@ -3,7 +3,7 @@
 """
     NetSuite REST Record API
 
-    NetSuite REST Record API generated 2025-09-01 at 22:32:31 UTC.
+    NetSuite REST Record API generated 2025-09-02 at 01:07:42 UTC.
 
     The version of the OpenAPI document: v1
     Contact: info@netsuite.com
@@ -27,6 +27,7 @@ from pynetsuite.models.customer import Customer
 from pynetsuite.models.invoice_exp_cost_element_custcol_zc_item_type import InvoiceExpCostElementCustcolZcItemType
 from pynetsuite.models.ns_link import NsLink
 from pynetsuite.models.ns_resource import NsResource
+from pynetsuite.models.sales_tax_item import SalesTaxItem
 from pynetsuite.models.vendor import Vendor
 from pynetsuite.models.vendor_bill_item_element_customer import VendorBillItemElementCustomer
 from typing import Optional, Set
@@ -122,7 +123,7 @@ class VendorBillExpenseElement(BaseModel):
     custcol_nx_consumable: Optional[NsResource] = None
     custcol_ph4014_src_custid: Optional[Customer] = None
     custcol_4601_witaxcode: Optional[NsResource] = None
-    custcol_vl_tax_code_print: Optional[NsResource] = None
+    custcol_vl_tax_code_print: Optional[SalesTaxItem] = None
     custcol_nx_task: Optional[NsResource] = None
     custcolprojectframeworkprovider: Optional[NsResource] = None
     var_class: Optional[NsResource] = Field(default=None, alias="class")
@@ -138,7 +139,7 @@ class VendorBillExpenseElement(BaseModel):
     projecttask: Optional[NsResource] = None
     custcol_nx_case: Optional[NsResource] = None
     custcol_nature_of_transaction_codes: Optional[NsResource] = None
-    custcol_adjustment_tax_code: Optional[NsResource] = None
+    custcol_adjustment_tax_code: Optional[SalesTaxItem] = None
     custcol_vl_linked_transaction: Optional[NsResource] = None
     custcol_ph4014_src_empid: Optional[NsResource] = None
     custcol_ph4014_src_vendorid: Optional[Vendor] = None
@@ -780,7 +781,7 @@ class VendorBillExpenseElement(BaseModel):
             "custcol_nx_consumable": NsResource.from_dict(obj["custcol_nx_consumable"]) if obj.get("custcol_nx_consumable") is not None else None,
             "custcol_ph4014_src_custid": Customer.from_dict(obj["custcol_ph4014_src_custid"]) if obj.get("custcol_ph4014_src_custid") is not None else None,
             "custcol_4601_witaxcode": NsResource.from_dict(obj["custcol_4601_witaxcode"]) if obj.get("custcol_4601_witaxcode") is not None else None,
-            "custcol_vl_tax_code_print": NsResource.from_dict(obj["custcol_vl_tax_code_print"]) if obj.get("custcol_vl_tax_code_print") is not None else None,
+            "custcol_vl_tax_code_print": SalesTaxItem.from_dict(obj["custcol_vl_tax_code_print"]) if obj.get("custcol_vl_tax_code_print") is not None else None,
             "custcol_nx_task": NsResource.from_dict(obj["custcol_nx_task"]) if obj.get("custcol_nx_task") is not None else None,
             "custcolprojectframeworkprovider": NsResource.from_dict(obj["custcolprojectframeworkprovider"]) if obj.get("custcolprojectframeworkprovider") is not None else None,
             "class": NsResource.from_dict(obj["class"]) if obj.get("class") is not None else None,
@@ -796,7 +797,7 @@ class VendorBillExpenseElement(BaseModel):
             "projecttask": NsResource.from_dict(obj["projecttask"]) if obj.get("projecttask") is not None else None,
             "custcol_nx_case": NsResource.from_dict(obj["custcol_nx_case"]) if obj.get("custcol_nx_case") is not None else None,
             "custcol_nature_of_transaction_codes": NsResource.from_dict(obj["custcol_nature_of_transaction_codes"]) if obj.get("custcol_nature_of_transaction_codes") is not None else None,
-            "custcol_adjustment_tax_code": NsResource.from_dict(obj["custcol_adjustment_tax_code"]) if obj.get("custcol_adjustment_tax_code") is not None else None,
+            "custcol_adjustment_tax_code": SalesTaxItem.from_dict(obj["custcol_adjustment_tax_code"]) if obj.get("custcol_adjustment_tax_code") is not None else None,
             "custcol_vl_linked_transaction": NsResource.from_dict(obj["custcol_vl_linked_transaction"]) if obj.get("custcol_vl_linked_transaction") is not None else None,
             "custcol_ph4014_src_empid": NsResource.from_dict(obj["custcol_ph4014_src_empid"]) if obj.get("custcol_ph4014_src_empid") is not None else None,
             "custcol_ph4014_src_vendorid": Vendor.from_dict(obj["custcol_ph4014_src_vendorid"]) if obj.get("custcol_ph4014_src_vendorid") is not None else None,

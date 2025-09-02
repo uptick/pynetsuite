@@ -3,7 +3,7 @@
 """
     NetSuite REST Record API
 
-    NetSuite REST Record API generated 2025-09-01 at 22:32:31 UTC.
+    NetSuite REST Record API generated 2025-09-02 at 01:07:42 UTC.
 
     The version of the OpenAPI document: v1
     Contact: info@netsuite.com
@@ -28,8 +28,10 @@ from pynetsuite.models.credit_memo_item_element_vsoe_sop_group import CreditMemo
 from pynetsuite.models.credit_memo_item_inventory_detail import CreditMemoItemInventoryDetail
 from pynetsuite.models.customer import Customer
 from pynetsuite.models.invoice_exp_cost_element_custcol_zc_item_type import InvoiceExpCostElementCustcolZcItemType
+from pynetsuite.models.invoice_item_cost_element_item import InvoiceItemCostElementItem
 from pynetsuite.models.ns_link import NsLink
 from pynetsuite.models.ns_resource import NsResource
+from pynetsuite.models.sales_tax_item import SalesTaxItem
 from pynetsuite.models.vendor import Vendor
 from pynetsuite.models.vendor_bill_item_element_item_subtype import VendorBillItemElementItemSubtype
 from typing import Optional, Set
@@ -164,7 +166,7 @@ class CreditMemoItemElement(BaseModel):
     price: Optional[NsResource] = None
     custcol_ph4014_src_empid: Optional[NsResource] = None
     custcol_ff_sc_matching_status: Optional[NsResource] = None
-    item: Optional[NsResource] = None
+    item: Optional[InvoiceItemCostElementItem] = None
     custcol_pocase: Optional[NsResource] = None
     custcol_subcontractor: Optional[Vendor] = None
     custcol_bb1_vehicle_expense: Optional[NsResource] = None
@@ -175,9 +177,9 @@ class CreditMemoItemElement(BaseModel):
     custcolprojectframeworkprovider: Optional[NsResource] = None
     custcolrequestorline: Optional[NsResource] = None
     custcol_emirate: Optional[NsResource] = None
-    custcol_adjustment_tax_code: Optional[NsResource] = None
+    custcol_adjustment_tax_code: Optional[SalesTaxItem] = None
     subsidiary: Optional[NsResource] = None
-    custcol_vl_tax_code_print: Optional[NsResource] = None
+    custcol_vl_tax_code_print: Optional[SalesTaxItem] = None
     custcol_ff_sc_ammr_rule_applied: Optional[NsResource] = None
     custcol_nxc_case: Optional[NsResource] = None
     order_doc: Optional[NsResource] = Field(default=None, alias="orderDoc")
@@ -941,7 +943,7 @@ class CreditMemoItemElement(BaseModel):
             "price": NsResource.from_dict(obj["price"]) if obj.get("price") is not None else None,
             "custcol_ph4014_src_empid": NsResource.from_dict(obj["custcol_ph4014_src_empid"]) if obj.get("custcol_ph4014_src_empid") is not None else None,
             "custcol_ff_sc_matching_status": NsResource.from_dict(obj["custcol_ff_sc_matching_status"]) if obj.get("custcol_ff_sc_matching_status") is not None else None,
-            "item": NsResource.from_dict(obj["item"]) if obj.get("item") is not None else None,
+            "item": InvoiceItemCostElementItem.from_dict(obj["item"]) if obj.get("item") is not None else None,
             "custcol_pocase": NsResource.from_dict(obj["custcol_pocase"]) if obj.get("custcol_pocase") is not None else None,
             "custcol_subcontractor": Vendor.from_dict(obj["custcol_subcontractor"]) if obj.get("custcol_subcontractor") is not None else None,
             "custcol_bb1_vehicle_expense": NsResource.from_dict(obj["custcol_bb1_vehicle_expense"]) if obj.get("custcol_bb1_vehicle_expense") is not None else None,
@@ -952,9 +954,9 @@ class CreditMemoItemElement(BaseModel):
             "custcolprojectframeworkprovider": NsResource.from_dict(obj["custcolprojectframeworkprovider"]) if obj.get("custcolprojectframeworkprovider") is not None else None,
             "custcolrequestorline": NsResource.from_dict(obj["custcolrequestorline"]) if obj.get("custcolrequestorline") is not None else None,
             "custcol_emirate": NsResource.from_dict(obj["custcol_emirate"]) if obj.get("custcol_emirate") is not None else None,
-            "custcol_adjustment_tax_code": NsResource.from_dict(obj["custcol_adjustment_tax_code"]) if obj.get("custcol_adjustment_tax_code") is not None else None,
+            "custcol_adjustment_tax_code": SalesTaxItem.from_dict(obj["custcol_adjustment_tax_code"]) if obj.get("custcol_adjustment_tax_code") is not None else None,
             "subsidiary": NsResource.from_dict(obj["subsidiary"]) if obj.get("subsidiary") is not None else None,
-            "custcol_vl_tax_code_print": NsResource.from_dict(obj["custcol_vl_tax_code_print"]) if obj.get("custcol_vl_tax_code_print") is not None else None,
+            "custcol_vl_tax_code_print": SalesTaxItem.from_dict(obj["custcol_vl_tax_code_print"]) if obj.get("custcol_vl_tax_code_print") is not None else None,
             "custcol_ff_sc_ammr_rule_applied": NsResource.from_dict(obj["custcol_ff_sc_ammr_rule_applied"]) if obj.get("custcol_ff_sc_ammr_rule_applied") is not None else None,
             "custcol_nxc_case": NsResource.from_dict(obj["custcol_nxc_case"]) if obj.get("custcol_nxc_case") is not None else None,
             "orderDoc": NsResource.from_dict(obj["orderDoc"]) if obj.get("orderDoc") is not None else None,

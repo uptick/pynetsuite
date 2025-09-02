@@ -3,7 +3,7 @@
 """
     NetSuite REST Record API
 
-    NetSuite REST Record API generated 2025-09-01 at 22:32:31 UTC.
+    NetSuite REST Record API generated 2025-09-02 at 01:07:42 UTC.
 
     The version of the OpenAPI document: v1
     Contact: info@netsuite.com
@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from pynetsuite.models.credit_memo_item_inventory_detail_inventory_assignment_collection import CreditMemoItemInventoryDetailInventoryAssignmentCollection
+from pynetsuite.models.invoice_item_cost_element_item import InvoiceItemCostElementItem
 from pynetsuite.models.invoice_item_inventory_detail_custom_form import InvoiceItemInventoryDetailCustomForm
 from pynetsuite.models.ns_link import NsLink
 from pynetsuite.models.ns_resource import NsResource
@@ -40,7 +41,7 @@ class CreditMemoItemInventoryDetail(BaseModel):
     links: Optional[List[NsLink]] = None
     location: Optional[NsResource] = None
     to_location: Optional[NsResource] = Field(default=None, alias="toLocation")
-    item: Optional[NsResource] = None
+    item: Optional[InvoiceItemCostElementItem] = None
     inventory_assignment: Optional[CreditMemoItemInventoryDetailInventoryAssignmentCollection] = Field(default=None, alias="inventoryAssignment")
     __properties: ClassVar[List[str]] = ["itemDescription", "unit", "quantity", "customForm", "externalId", "refName", "links", "location", "toLocation", "item", "inventoryAssignment"]
 
@@ -148,7 +149,7 @@ class CreditMemoItemInventoryDetail(BaseModel):
             "links": [NsLink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None,
             "location": NsResource.from_dict(obj["location"]) if obj.get("location") is not None else None,
             "toLocation": NsResource.from_dict(obj["toLocation"]) if obj.get("toLocation") is not None else None,
-            "item": NsResource.from_dict(obj["item"]) if obj.get("item") is not None else None,
+            "item": InvoiceItemCostElementItem.from_dict(obj["item"]) if obj.get("item") is not None else None,
             "inventoryAssignment": CreditMemoItemInventoryDetailInventoryAssignmentCollection.from_dict(obj["inventoryAssignment"]) if obj.get("inventoryAssignment") is not None else None
         })
         return _obj

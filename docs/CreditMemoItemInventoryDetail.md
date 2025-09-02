@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **links** | [**List[NsLink]**](NsLink.md) |  | [optional] [readonly] 
 **location** | [**NsResource**](NsResource.md) |  | [optional] 
 **to_location** | [**NsResource**](NsResource.md) |  | [optional] 
-**item** | [**NsResource**](NsResource.md) |  | [optional] 
+**item** | [**InvoiceItemCostElementItem**](InvoiceItemCostElementItem.md) |  | [optional] 
 **inventory_assignment** | [**CreditMemoItemInventoryDetailInventoryAssignmentCollection**](CreditMemoItemInventoryDetailInventoryAssignmentCollection.md) |  | [optional] 
 
 ## Example

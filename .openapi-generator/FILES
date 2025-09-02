@@ -77,6 +77,7 @@ docs/InvoiceExpCostElementCustcolZcItemType.md
 docs/InvoiceItemCollection.md
 docs/InvoiceItemCostCollection.md
 docs/InvoiceItemCostElement.md
+docs/InvoiceItemCostElementItem.md
 docs/InvoiceItemCostInventoryDetail.md
 docs/InvoiceItemCostInventoryDetailInventoryAssignmentCollection.md
 docs/InvoiceItemCostInventoryDetailInventoryAssignmentElement.md
@@ -94,6 +95,10 @@ docs/NsErrorOErrorDetailsInner.md
 docs/NsLink.md
 docs/NsResource.md
 docs/NsResourceCollection.md
+docs/SalesTaxItem.md
+docs/SalesTaxItemApi.md
+docs/SalesTaxItemCollection.md
+docs/SalesTaxItemCustomForm.md
 docs/TaxType.md
 docs/TaxTypeApi.md
 docs/TaxTypeCollection.md
@@ -145,6 +150,7 @@ pynetsuite/api/credit_memo_api.py
 pynetsuite/api/currency_api.py
 pynetsuite/api/customer_api.py
 pynetsuite/api/invoice_api.py
+pynetsuite/api/sales_tax_item_api.py
 pynetsuite/api/tax_type_api.py
 pynetsuite/api/term_api.py
 pynetsuite/api/vendor_api.py
@@ -223,6 +229,7 @@ pynetsuite/models/invoice_exp_cost_element_custcol_zc_item_type.py
 pynetsuite/models/invoice_item_collection.py
 pynetsuite/models/invoice_item_cost_collection.py
 pynetsuite/models/invoice_item_cost_element.py
+pynetsuite/models/invoice_item_cost_element_item.py
 pynetsuite/models/invoice_item_cost_inventory_detail.py
 pynetsuite/models/invoice_item_cost_inventory_detail_inventory_assignment_collection.py
 pynetsuite/models/invoice_item_cost_inventory_detail_inventory_assignment_element.py
@@ -240,6 +247,9 @@ pynetsuite/models/ns_error_o_error_details_inner.py
 pynetsuite/models/ns_link.py
 pynetsuite/models/ns_resource.py
 pynetsuite/models/ns_resource_collection.py
+pynetsuite/models/sales_tax_item.py
+pynetsuite/models/sales_tax_item_collection.py
+pynetsuite/models/sales_tax_item_custom_form.py
 pynetsuite/models/tax_type.py
 pynetsuite/models/tax_type_collection.py
 pynetsuite/models/tax_type_country.py
@@ -361,6 +371,7 @@ test/test_invoice_exp_cost_element_custcol_zc_item_type.py
 test/test_invoice_item_collection.py
 test/test_invoice_item_cost_collection.py
 test/test_invoice_item_cost_element.py
+test/test_invoice_item_cost_element_item.py
 test/test_invoice_item_cost_inventory_detail.py
 test/test_invoice_item_cost_inventory_detail_inventory_assignment_collection.py
 test/test_invoice_item_cost_inventory_detail_inventory_assignment_element.py
@@ -378,6 +389,10 @@ test/test_ns_error_o_error_details_inner.py
 test/test_ns_link.py
 test/test_ns_resource.py
 test/test_ns_resource_collection.py
+test/test_sales_tax_item.py
+test/test_sales_tax_item_api.py
+test/test_sales_tax_item_collection.py
+test/test_sales_tax_item_custom_form.py
 test/test_tax_type.py
 test/test_tax_type_api.py
 test/test_tax_type_collection.py

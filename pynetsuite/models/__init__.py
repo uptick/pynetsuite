@@ -4,7 +4,7 @@
 """
     NetSuite REST Record API
 
-    NetSuite REST Record API generated 2025-09-01 at 22:32:31 UTC.
+    NetSuite REST Record API generated 2025-09-02 at 01:07:42 UTC.
 
     The version of the OpenAPI document: v1
     Contact: info@netsuite.com
@@ -84,6 +84,7 @@ from pynetsuite.models.invoice_exp_cost_element_custcol_zc_item_type import Invo
 from pynetsuite.models.invoice_item_collection import InvoiceItemCollection
 from pynetsuite.models.invoice_item_cost_collection import InvoiceItemCostCollection
 from pynetsuite.models.invoice_item_cost_element import InvoiceItemCostElement
+from pynetsuite.models.invoice_item_cost_element_item import InvoiceItemCostElementItem
 from pynetsuite.models.invoice_item_cost_inventory_detail import InvoiceItemCostInventoryDetail
 from pynetsuite.models.invoice_item_cost_inventory_detail_inventory_assignment_collection import InvoiceItemCostInventoryDetailInventoryAssignmentCollection
 from pynetsuite.models.invoice_item_cost_inventory_detail_inventory_assignment_element import InvoiceItemCostInventoryDetailInventoryAssignmentElement
@@ -101,6 +102,9 @@ from pynetsuite.models.ns_error_o_error_details_inner import NsErrorOErrorDetail
 from pynetsuite.models.ns_link import NsLink
 from pynetsuite.models.ns_resource import NsResource
 from pynetsuite.models.ns_resource_collection import NsResourceCollection
+from pynetsuite.models.sales_tax_item import SalesTaxItem
+from pynetsuite.models.sales_tax_item_collection import SalesTaxItemCollection
+from pynetsuite.models.sales_tax_item_custom_form import SalesTaxItemCustomForm
 from pynetsuite.models.tax_type import TaxType
 from pynetsuite.models.tax_type_collection import TaxTypeCollection
 from pynetsuite.models.tax_type_country import TaxTypeCountry

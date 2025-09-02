@@ -3,7 +3,7 @@
 """
     NetSuite REST Record API
 
-    NetSuite REST Record API generated 2025-09-01 at 22:32:31 UTC.
+    NetSuite REST Record API generated 2025-09-02 at 01:07:42 UTC.
 
     The version of the OpenAPI document: v1
     Contact: info@netsuite.com
@@ -58,15 +58,7 @@ class TestInvoiceItemInventoryDetail(unittest.TestCase):
                             rel = '', 
                             href = '', )
                         ], ),
-                item = pynetsuite.models.ns_resource.nsResource(
-                    id = '', 
-                    ref_name = '', 
-                    external_id = '', 
-                    links = [
-                        pynetsuite.models.ns_link.nsLink(
-                            rel = '', 
-                            href = '', )
-                        ], ),
+                item = None,
                 inventory_assignment = pynetsuite.models.invoice_item_inventory_detail_inventory_assignment_collection.invoice-item-inventoryDetail-inventoryAssignmentCollection(
                     links = [
                         pynetsuite.models.ns_link.nsLink(

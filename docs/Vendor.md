@@ -169,7 +169,7 @@ Name | Type | Description | Notes
 **custentity_zc_prevailing_rate** | [**NsResource**](NsResource.md) |  | [optional] 
 **custentity_payment_type** | [**NsResource**](NsResource.md) |  | [optional] 
 **incoterm** | [**NsResource**](NsResource.md) |  | [optional] 
-**custentity_eff_nsp2p_defaultitem** | [**NsResource**](NsResource.md) |  | [optional] 
+**custentity_eff_nsp2p_defaultitem** | [**InvoiceItemCostElementItem**](InvoiceItemCostElementItem.md) |  | [optional] 
 **custentity_ff_sc_ent_diff_pref** | [**NsResource**](NsResource.md) |  | [optional] 
 **custentity_vl_entity_type** | [**NsResource**](NsResource.md) |  | [optional] 
 

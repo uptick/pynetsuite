@@ -3,7 +3,7 @@
 """
     NetSuite REST Record API
 
-    NetSuite REST Record API generated 2025-09-01 at 22:32:31 UTC.
+    NetSuite REST Record API generated 2025-09-02 at 01:07:42 UTC.
 
     The version of the OpenAPI document: v1
     Contact: info@netsuite.com
@@ -27,6 +27,7 @@ from pynetsuite.models.customer import Customer
 from pynetsuite.models.invoice_exp_cost_element_custcol_zc_item_type import InvoiceExpCostElementCustcolZcItemType
 from pynetsuite.models.ns_link import NsLink
 from pynetsuite.models.ns_resource import NsResource
+from pynetsuite.models.sales_tax_item import SalesTaxItem
 from pynetsuite.models.vendor import Vendor
 from typing import Optional, Set
 from typing_extensions import Self
@@ -105,7 +106,7 @@ class InvoiceExpCostElement(BaseModel):
     custcol_nxc_start_check: Optional[StrictBool] = None
     custcol_4601_witaxline_exp: Optional[StrictStr] = None
     ref_name: Optional[StrictStr] = Field(default=None, alias="refName")
-    custcol_adjustment_tax_code: Optional[NsResource] = None
+    custcol_adjustment_tax_code: Optional[SalesTaxItem] = None
     custcol_ff_sc_matching_status: Optional[NsResource] = None
     category: Optional[NsResource] = None
     custcol_ph4014_src_empid: Optional[NsResource] = None
@@ -114,7 +115,7 @@ class InvoiceExpCostElement(BaseModel):
     cseg_accreditations: Optional[NsResource] = None
     var_class: Optional[NsResource] = Field(default=None, alias="class")
     custcol_expense_code_of_supply: Optional[NsResource] = None
-    custcol_vl_tax_code_print: Optional[NsResource] = None
+    custcol_vl_tax_code_print: Optional[SalesTaxItem] = None
     custcol_statistical_procedure_purc: Optional[NsResource] = None
     custcol_ff_sc_po_id: Optional[NsResource] = None
     custcol_nx_case: Optional[NsResource] = None
@@ -731,7 +732,7 @@ class InvoiceExpCostElement(BaseModel):
             "custcol_nxc_start_check": obj.get("custcol_nxc_start_check"),
             "custcol_4601_witaxline_exp": obj.get("custcol_4601_witaxline_exp"),
             "refName": obj.get("refName"),
-            "custcol_adjustment_tax_code": NsResource.from_dict(obj["custcol_adjustment_tax_code"]) if obj.get("custcol_adjustment_tax_code") is not None else None,
+            "custcol_adjustment_tax_code": SalesTaxItem.from_dict(obj["custcol_adjustment_tax_code"]) if obj.get("custcol_adjustment_tax_code") is not None else None,
             "custcol_ff_sc_matching_status": NsResource.from_dict(obj["custcol_ff_sc_matching_status"]) if obj.get("custcol_ff_sc_matching_status") is not None else None,
             "category": NsResource.from_dict(obj["category"]) if obj.get("category") is not None else None,
             "custcol_ph4014_src_empid": NsResource.from_dict(obj["custcol_ph4014_src_empid"]) if obj.get("custcol_ph4014_src_empid") is not None else None,
@@ -740,7 +741,7 @@ class InvoiceExpCostElement(BaseModel):
             "cseg_accreditations": NsResource.from_dict(obj["cseg_accreditations"]) if obj.get("cseg_accreditations") is not None else None,
             "class": NsResource.from_dict(obj["class"]) if obj.get("class") is not None else None,
             "custcol_expense_code_of_supply": NsResource.from_dict(obj["custcol_expense_code_of_supply"]) if obj.get("custcol_expense_code_of_supply") is not None else None,
-            "custcol_vl_tax_code_print": NsResource.from_dict(obj["custcol_vl_tax_code_print"]) if obj.get("custcol_vl_tax_code_print") is not None else None,
+            "custcol_vl_tax_code_print": SalesTaxItem.from_dict(obj["custcol_vl_tax_code_print"]) if obj.get("custcol_vl_tax_code_print") is not None else None,
             "custcol_statistical_procedure_purc": NsResource.from_dict(obj["custcol_statistical_procedure_purc"]) if obj.get("custcol_statistical_procedure_purc") is not None else None,
             "custcol_ff_sc_po_id": NsResource.from_dict(obj["custcol_ff_sc_po_id"]) if obj.get("custcol_ff_sc_po_id") is not None else None,
             "custcol_nx_case": NsResource.from_dict(obj["custcol_nx_case"]) if obj.get("custcol_nx_case") is not None else None,

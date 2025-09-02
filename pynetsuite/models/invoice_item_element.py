@@ -3,7 +3,7 @@
 """
     NetSuite REST Record API
 
-    NetSuite REST Record API generated 2025-09-01 at 22:32:31 UTC.
+    NetSuite REST Record API generated 2025-09-02 at 01:07:42 UTC.
 
     The version of the OpenAPI document: v1
     Contact: info@netsuite.com
@@ -27,9 +27,11 @@ from pynetsuite.models.credit_memo_item_element_vsoe_permit_discount import Cred
 from pynetsuite.models.credit_memo_item_element_vsoe_sop_group import CreditMemoItemElementVsoeSOPGroup
 from pynetsuite.models.customer import Customer
 from pynetsuite.models.invoice_exp_cost_element_custcol_zc_item_type import InvoiceExpCostElementCustcolZcItemType
+from pynetsuite.models.invoice_item_cost_element_item import InvoiceItemCostElementItem
 from pynetsuite.models.invoice_item_inventory_detail import InvoiceItemInventoryDetail
 from pynetsuite.models.ns_link import NsLink
 from pynetsuite.models.ns_resource import NsResource
+from pynetsuite.models.sales_tax_item import SalesTaxItem
 from pynetsuite.models.vendor import Vendor
 from pynetsuite.models.vendor_bill_item_element_bill_variance_status import VendorBillItemElementBillVarianceStatus
 from pynetsuite.models.vendor_bill_item_element_item_subtype import VendorBillItemElementItemSubtype
@@ -145,13 +147,13 @@ class InvoiceItemElement(BaseModel):
     custcol_ff_sc_po_id: Optional[NsResource] = None
     custcol_statistical_procedure_purc: Optional[NsResource] = None
     custcolprojectframeworkprovider: Optional[NsResource] = None
-    custcol_vl_tax_code_print: Optional[NsResource] = None
+    custcol_vl_tax_code_print: Optional[SalesTaxItem] = None
     var_class: Optional[NsResource] = Field(default=None, alias="class")
     custcol_ff_sc_matching_status: Optional[NsResource] = None
     custcolpmschedulerline: Optional[NsResource] = None
     custcol_expense_code_of_supply: Optional[NsResource] = None
     cseg_paactivitycode: Optional[NsResource] = None
-    custcol_adjustment_tax_code: Optional[NsResource] = None
+    custcol_adjustment_tax_code: Optional[SalesTaxItem] = None
     custcolprojectqsline: Optional[NsResource] = None
     custcol_nx_asset: Optional[NsResource] = None
     inventory_detail: Optional[InvoiceItemInventoryDetail] = Field(default=None, alias="inventoryDetail")
@@ -177,7 +179,7 @@ class InvoiceItemElement(BaseModel):
     custcol_bb1_labour_type: Optional[NsResource] = None
     custcol_nondeductible_account: Optional[Account] = None
     custcol_statistical_procedure_sale: Optional[NsResource] = None
-    item: Optional[NsResource] = None
+    item: Optional[InvoiceItemCostElementItem] = None
     custcol_emirate: Optional[NsResource] = None
     custcol_bb1_vehicle_expense: Optional[NsResource] = None
     charge_type: Optional[NsResource] = Field(default=None, alias="chargeType")
@@ -927,13 +929,13 @@ class InvoiceItemElement(BaseModel):
             "custcol_ff_sc_po_id": NsResource.from_dict(obj["custcol_ff_sc_po_id"]) if obj.get("custcol_ff_sc_po_id") is not None else None,
             "custcol_statistical_procedure_purc": NsResource.from_dict(obj["custcol_statistical_procedure_purc"]) if obj.get("custcol_statistical_procedure_purc") is not None else None,
             "custcolprojectframeworkprovider": NsResource.from_dict(obj["custcolprojectframeworkprovider"]) if obj.get("custcolprojectframeworkprovider") is not None else None,
-            "custcol_vl_tax_code_print": NsResource.from_dict(obj["custcol_vl_tax_code_print"]) if obj.get("custcol_vl_tax_code_print") is not None else None,
+            "custcol_vl_tax_code_print": SalesTaxItem.from_dict(obj["custcol_vl_tax_code_print"]) if obj.get("custcol_vl_tax_code_print") is not None else None,
             "class": NsResource.from_dict(obj["class"]) if obj.get("class") is not None else None,
             "custcol_ff_sc_matching_status": NsResource.from_dict(obj["custcol_ff_sc_matching_status"]) if obj.get("custcol_ff_sc_matching_status") is not None else None,
             "custcolpmschedulerline": NsResource.from_dict(obj["custcolpmschedulerline"]) if obj.get("custcolpmschedulerline") is not None else None,
             "custcol_expense_code_of_supply": NsResource.from_dict(obj["custcol_expense_code_of_supply"]) if obj.get("custcol_expense_code_of_supply") is not None else None,
             "cseg_paactivitycode": NsResource.from_dict(obj["cseg_paactivitycode"]) if obj.get("cseg_paactivitycode") is not None else None,
-            "custcol_adjustment_tax_code": NsResource.from_dict(obj["custcol_adjustment_tax_code"]) if obj.get("custcol_adjustment_tax_code") is not None else None,
+            "custcol_adjustment_tax_code": SalesTaxItem.from_dict(obj["custcol_adjustment_tax_code"]) if obj.get("custcol_adjustment_tax_code") is not None else None,
             "custcolprojectqsline": NsResource.from_dict(obj["custcolprojectqsline"]) if obj.get("custcolprojectqsline") is not None else None,
             "custcol_nx_asset": NsResource.from_dict(obj["custcol_nx_asset"]) if obj.get("custcol_nx_asset") is not None else None,
             "inventoryDetail": InvoiceItemInventoryDetail.from_dict(obj["inventoryDetail"]) if obj.get("inventoryDetail") is not None else None,
@@ -959,7 +961,7 @@ class InvoiceItemElement(BaseModel):
             "custcol_bb1_labour_type": NsResource.from_dict(obj["custcol_bb1_labour_type"]) if obj.get("custcol_bb1_labour_type") is not None else None,
             "custcol_nondeductible_account": Account.from_dict(obj["custcol_nondeductible_account"]) if obj.get("custcol_nondeductible_account") is not None else None,
             "custcol_statistical_procedure_sale": NsResource.from_dict(obj["custcol_statistical_procedure_sale"]) if obj.get("custcol_statistical_procedure_sale") is not None else None,
-            "item": NsResource.from_dict(obj["item"]) if obj.get("item") is not None else None,
+            "item": InvoiceItemCostElementItem.from_dict(obj["item"]) if obj.get("item") is not None else None,
             "custcol_emirate": NsResource.from_dict(obj["custcol_emirate"]) if obj.get("custcol_emirate") is not None else None,
             "custcol_bb1_vehicle_expense": NsResource.from_dict(obj["custcol_bb1_vehicle_expense"]) if obj.get("custcol_bb1_vehicle_expense") is not None else None,
             "chargeType": NsResource.from_dict(obj["chargeType"]) if obj.get("chargeType") is not None else None,
