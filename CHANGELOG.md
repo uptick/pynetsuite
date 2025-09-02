@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/uptick/pynetsuite/compare/v1.2.0...v1.3.0) (2025-09-02)
+
+
+### Features
+
+* add ability to select specific fields ([f71be8c](https://github.com/uptick/pynetsuite/commit/f71be8cb873daa2189ea686c04870f34581d293c))
+
 ## [1.2.0](https://github.com/uptick/pynetsuite/compare/v1.1.0...v1.2.0) (2025-09-02)
 
 
